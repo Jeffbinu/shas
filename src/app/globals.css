@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* Import Tailwind v4 (this replaces old @tailwind directives) */
+@import "tailwindcss";
+
+:root{
+  --primary-500: #0f6fff;
+  --primary-600: #0b5cdc;
+  --muted-white: rgba(255,255,255,0.85);
+}
+
+@theme {
+  /* Extra Small Devices - Small phones */
+  --breakpoint-xs: 20rem;    /* 320px */
+  
+  /* Small Devices - Phones (default: 640px) */
+  --breakpoint-sm: 40rem;    /* 640px */
+  
+  /* Medium Devices - Tablets (default: 768px) */
+  --breakpoint-md: 48rem;    /* 768px */
+  
+  /* Large Devices - Small laptops (default: 1024px) */
+  --breakpoint-lg: 64rem;    /* 1024px */
+  
+  /* Extra Large Devices - Desktops (default: 1280px) */
+  --breakpoint-xl: 80rem;    /* 1280px */
+  
+  /* 2X Large Devices - Large desktops (default: 1536px) */
+  --breakpoint-2xl: 96rem;   /* 1536px */
+  
+  /* Optional: Additional custom breakpoints */
+  --breakpoint-3xl: 120rem;  /* 1920px - Full HD screens */
+  --breakpoint-4xl: 160rem;  /* 2560px - 2K/4K screens */
+}
+
+/* 
+Conversion Reference (based on 16px = 1rem):
+- xs:  20rem  = 320px  (small phones)
+- sm:  40rem  = 640px  (large phones)
+- md:  48rem  = 768px  (tablets)
+- lg:  64rem  = 1024px (laptops)
+- xl:  80rem  = 1280px (desktops)
+- 2xl: 96rem  = 1536px (large desktops)
+- 3xl: 120rem = 1920px (Full HD)
+- 4xl: 160rem = 2560px (2K/4K)
+
+Benefits of using rem:
+✅ Better accessibility - respects user's browser font size settings
+✅ More consistent scaling across different devices
+✅ Easier to maintain responsive typography
+
+Usage in your components:
+<div className="text-sm md:text-base lg:text-lg xl:text-xl">
+  Responsive text
+</div>
+*/
+
+html,body,#root {
+  height:100%;
+}
+
+body {
+  font-family: "Poppins", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #e6eefb;
+  background: linear-gradient(180deg, #061125 0%, #030815 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+h1,h2,h3,h4 { -webkit-font-smoothing:antialiased; }
+
+.headline-gradient {
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* subtle card glass */
+.glass-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* pill label */
+.pill {
+  display:inline-block;
+  background: rgba(255,255,255,0.06);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+/* small helpers */
+.soft-title { color: rgba(255,255,255,0.55); }

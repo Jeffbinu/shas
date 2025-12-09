@@ -1,0 +1,162 @@
+{
+  "site": {
+    "title": "SHASHONK",
+    "logo": "/images/logo.svg",
+    "nav": [
+      { "label": "Home", "href": "/" },
+      { "label": "About Us", "href": "#about" },
+      { "label": "Our Service", "href": "#services" },
+      { "label": "Our Projects", "href": "#projects" },
+      { "label": "Our clients", "href": "#clients" },
+      { "label": "Contact Us", "href": "#contact" }
+    ],
+    "contact": {
+      "email": "info@shashonk.com",
+      "phone": "+91 6380779941"
+    }
+  },
+
+  "hero": {
+    "headline": "Intellectual Wisdom In Technology",
+    "subhead": "We craft digital experiences and intelligent solutions that help businesses grow, compete, and lead in the modern world.",
+    "ctaPrimary": { "label": "Explore Our services", "href": "#services" },
+    "ctaSecondary": { "label": "Contact Us", "href": "#contact" },
+    "image": "../../public/hero/women.png"
+  },
+
+  "partners": {
+    "logos": [
+      "/images/partner-1.png",
+      "/images/partner-2.png",
+      "/images/partner-3.png",
+      "/images/partner-4.png",
+      "/images/partner-5.png",
+      "/images/partner-6.png"
+    ]
+  },
+
+  "story": {
+    "title": "Our Story",
+    "tag": "About us",
+    "leftTitleLarge": "Idea to impact\nThe spark that started it all.",
+    "paragraphs": [
+      "SHASHONK started with a simple idea: What if building digital products didn’t have to feel complicated?",
+      "We’re not here just to deliver projects—we’re here to understand your goals, challenge the usual, and build digital experiences that actually make a difference.",
+      "Whether it's crafting a slick website, building intelligent AI solutions, or shaping a brand from scratch, we bring energy, curiosity, and a 'let’s make it happen' attitude to every project.",
+      "One thing hasn’t changed: we’re still here to help ideas grow into something unforgettable."
+    ],
+    "storyImage": "/images/story-img.png",
+    "storyCard": {
+      "title": "Turning Vision Into Something Real",
+      "desc": "We believe great things happen when creativity meets technology"
+    }
+  },
+
+  "services": [
+    {
+      "title": "Experience",
+      "subtitle": "Web, App Design & Development",
+      "desc": "Creating seamless digital experiences",
+      "icon": "/api/placeholder/160/160",
+      "bgGradient": "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)"
+    },
+    {
+      "title": "Intelligence",
+      "subtitle": "AI & Machine Learning",
+      "desc": "Smart solutions powered by AI",
+      "icon": "/api/placeholder/160/160",
+      "bgGradient": "linear-gradient(135deg, #0d1a35 0%, #0f1e3f 100%)"
+    },
+    {
+      "title": "Scalability",
+      "subtitle": "Cloud Solutions",
+      "desc": "Scalable infrastructure for growth",
+      "icon": "/api/placeholder/160/160",
+      "bgGradient": "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)"
+    }
+  ],
+
+  "how": {
+    "title": "How We Work",
+    "subtitle": "Simple, transparent, effective",
+    "steps": [
+      {
+        "title": "Discover",
+        "desc": "We dive deep into your business goals and understand what truly matters."
+      },
+      {
+        "title": "Design",
+        "desc": "We craft user-centric intuitive interfaces with solid design principles."
+      },
+      {
+        "title": "Develop",
+        "desc": "We bring ideas to life with scalable, clean and reliable engineering."
+      },
+      {
+        "title": "Deliver & Optimize",
+        "desc": "We launch with precision and refine solutions based on real-world performance."
+      }
+    ]
+  },
+
+  "features": {
+    "heading": "Future-Ready Solutions, Built To Perform",
+    "desc": "At SHASHONK, we create solutions designed for performance, intelligence, and long-term growth...",
+    "items": [
+      {
+        "title": "Innovative Interface Design",
+        "icon": "/images/feature-1.png"
+      },
+      { "title": "Advanced Analytics", "icon": "/images/feature-2.png" },
+      {
+        "title": "Tailored Support Excellence",
+        "icon": "/images/feature-3.png"
+      }
+    ]
+  },
+
+  "projects": [
+    { "title": "FinConnect", "image": "/images/project-1.png" },
+    { "title": "HealthSync", "image": "/images/project-2.png" },
+    { "title": "Commerce360", "image": "/images/project-3.png" },
+    { "title": "PrintWithAI", "image": "/images/project-4.png" },
+    { "title": "PM Insights", "image": "/images/project-5.png" },
+    { "title": "Commerce360", "image": "/images/project-6.png" }
+  ],
+
+  "testimonials": [
+    {
+      "quote": "SHASHONK didn’t just build our product—they understood our vision better than we did.",
+      "author": "Aarav M",
+      "role": "Founder"
+    },
+    {
+      "quote": "We were struggling with our digital presence until these guys stepped in. Everything felt smooth and effortless.",
+      "author": "Sarah L.",
+      "role": "Marketing Lead"
+    },
+    {
+      "quote": "They delivered performance, experience, and UI that exceeded expectations.",
+      "author": "Megan",
+      "role": "CTO, MasterStudy"
+    }
+  ],
+
+  "blog": [
+    {
+      "title": "Successful MVP Launches That Changed the Game",
+      "excerpt": "Discover the secrets behind game-changing MVP launches...",
+      "image": "/images/blog-1.png"
+    },
+    {
+      "title": "How Our AI Product Development Company Innovates",
+      "excerpt": "Learn how our AI development approaches innovation...",
+      "image": "/images/blog-2.png"
+    },
+    {
+      "title": "Optimizing E-commerce With AI Recommendations",
+      "excerpt": "Boost your e-commerce sales using AI-driven recommendations...",
+      "image": "/images/blog-3.png"
+    }
+  ]
+}
