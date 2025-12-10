@@ -1,119 +1,77 @@
 "use client";
 import Image, { StaticImageData } from "next/image";
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    let animationId: number;
-    let scrollPosition = 0;
-    const scrollSpeed = 0.5; // Adjust speed here (pixels per frame)
-
-    const animate = () => {
-      if (!scrollContainer) return;
-
-      scrollPosition += scrollSpeed;
-
-      // Reset scroll position for infinite loop
-      if (scrollPosition >= scrollContainer.scrollWidth / 2) {
-        scrollPosition = 0;
-      }
-
-      scrollContainer.scrollLeft = scrollPosition;
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    // Pause on hover
-    const handleMouseEnter = () => cancelAnimationFrame(animationId);
-    const handleMouseLeave = () => {
-      animationId = requestAnimationFrame(animate);
-    };
-
-    scrollContainer.addEventListener("mouseenter", handleMouseEnter);
-    scrollContainer.addEventListener("mouseleave", handleMouseLeave);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      scrollContainer.removeEventListener("mouseenter", handleMouseEnter);
-      scrollContainer.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
-
-  // Duplicate logos for infinite scroll effect
-  const duplicatedLogos = [...logos, ...logos];
+  // We double the logos to create the seamless infinite loop
+  // The animation moves exactly 50% of the width, then snaps back to 0
+  const sliderLogos = [...logos, ...logos];
 
   return (
-    <section className="relative py-16 md:py-20 bg-gradient-to-b from-[#0a1628] via-[#0d1d35] to-[#0a1628] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent"></div>
+    <section className="relative pt-10 pb-16 bg-[#050a14] overflow-hidden">
+      {/* Define the custom animation keyframes directly in the component */}
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+        /* Pause animation when the parent group is hovered */
+        .group:hover .animate-scroll {
+          animation-play-state: paused;
+        }
+      `}</style>
 
-      <div className="relative">
+      <div className="relative max-w-7xl mx-auto px-6">
         {/* Quote Section */}
-        <div className="text-center mb-12 md:mb-16">
-          <blockquote className="text-[#60a5fa] font-medium text-xl md:text-2xl lg:text-3xl mb-4 leading-relaxed">
-            Technology is best when it brings people together.
+        <div className="text-center mb-16 md:mb-20">
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4">
+            <span className="text-[#22d3ee]">
+              “Technology is best when it brings people together.”
+            </span>
           </blockquote>
-          <div className="text-white/70 text-base md:text-lg font-light">
-            — Matt Mullenweg
+          <div className="text-white text-lg md:text-xl font-bold tracking-wide">
+            – Matt Mullenweg
           </div>
         </div>
 
-        <div className="mb-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        {/* Top dashed line */}
+        <div className="w-full border-t border-dashed border-white/10 mb-10"></div>
 
-        {/* Logos Slider Section */}
-        <div className="relative">
-          {/* Scrolling container */}
-          <div
-            ref={scrollRef}
-            className="flex items-center gap-12 md:gap-16 lg:gap-20 overflow-x-hidden py-8"
-            style={{ scrollBehavior: "auto" }}
-          >
-            {duplicatedLogos.map((src, index) => {
-              const isCenter = index === Math.floor(duplicatedLogos.length / 4);
-
-              return (
-                <div
-                  key={`logo-${index}`}
-                  className={`
-                    flex-shrink-0 
-                    transition-all 
-                    duration-300 
-                    ease-out
-                    ${
-                      isCenter
-                        ? "scale-110 opacity-100 brightness-110"
-                        : "opacity-60 grayscale hover:grayscale-0"
-                    }
-                    hover:scale-125 
-                    hover:opacity-100
-                    cursor-pointer
-                  `}
-                  style={{
-                    filter: isCenter ? "none" : "grayscale(100%)",
-                  }}
-                >
-                  <Image
-                    src={src}
-                    alt={`partner-logo-${index}`}
-                    width={50}
-                    height={50}
-                    className="h-8 md:h-8 w-auto object-contain select-none"
-                    draggable={false}
-                  />
+        {/* Logos Slider Container */}
+        {/* 'group' class here detects hover for the whole section to pause the slider */}
+        <div className="relative w-full overflow-hidden group">
+          {/* The Sliding Wrapper */}
+          <div className="flex w-max animate-scroll">
+            {sliderLogos.map((src, index) => (
+              <div
+                key={`logo-${index}`}
+                className="flex items-center justify-center mx-8 md:mx-12"
+              >
+                {/* Individual Logo Item */}
+                <div className="relative h-8 md:h-10 w-auto cursor-pointer transition-transform duration-300 ease-out hover:scale-110">
+                  <div className="relative h-full w-auto opacity-70 hover:opacity-100 transition-opacity duration-300">
+                    <Image
+                      src={src}
+                      alt={`partner-logo-${index}`}
+                      className="h-full w-auto object-contain brightness-0 invert"
+                      draggable={false}
+                    />
+                  </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
 
-        {/* Bottom decorative line */}
-        <div className="mt-4 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+        {/* Bottom dashed line */}
+        <div className="w-full border-t border-dashed border-white/10 mt-10"></div>
       </div>
     </section>
   );

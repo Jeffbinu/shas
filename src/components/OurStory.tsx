@@ -9,116 +9,115 @@ interface OurStoryProps {
 
 export default function OurStory({ image }: OurStoryProps) {
   return (
-    <section className="relative py-16 md:py-24 bg-gradient-to-b from-[#0a1628] via-[#0d1d35] to-[#0a1628] overflow-hidden">
-      {/* Background gradient effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent"></div>
-      
+    <section className="relative py-16 md:py-24 bg-[#050a14] overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        
+        {/* Top Header */}
+        <div className="text-center mb-16 md:mb-20">
+          <div className="inline-block px-6 py-1.5 mb-6 bg-white rounded-full">
+            <span className="text-[#0a1525] text-sm font-bold tracking-wide uppercase">
+              About us
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+            Our Story
+          </h2>
+        </div>
+
+        {/* Middle Section: Split Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
           
-          {/* Left Column - Text Content */}
-          <div className="relative">
-            {/* Large background text */}
-            <div className="absolute -top-8 -left-4 text-[80px] md:text-[100px] lg:text-[120px] leading-[0.85] font-bold text-white/[0.03] select-none pointer-events-none hidden lg:block">
+          {/* Left: Headline Text */}
+          <div className="flex flex-col justify-start pt-4">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-400 mb-2 leading-tight">
               Idea to impact
+            </h3>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0f172a] leading-tight">
+              The spark
               <br />
-              <span className="text-[60px] md:text-[70px] lg:text-[80px]">
-                that started
-              </span>
-            </div>
-
-            <div className="relative z-10 space-y-6">
-              {/* About us pill */}
-              <div className="inline-flex items-center">
-                <span className="px-4 py-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/90 text-sm font-medium">
-                  About us
-                </span>
-              </div>
-
-              {/* Heading */}
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-                Our Story
-              </h2>
-
-              {/* Content */}
-              <div className="space-y-4 text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
-                <p className="text-white/80 font-medium">Hey there,</p>
-                
-                <p>
-                  <span className="text-white font-medium">SHASHONK</span> started with a simple idea: what if building digital products didn't have to feel complicated? What if businesses—big or small—had a team they could rely on to turn their ideas into something smart, clean, and genuinely impactful?
-                </p>
-
-                <p>
-                  We're not here just to deliver projects—we're here to understand your goals, challenge the usual, and build digital experiences that actually make a difference. Whether it's crafting a slick website, building intelligent AI solutions, or shaping a brand from scratch, we bring energy, curiosity, and a "let's make it happen" attitude to every project.
-                </p>
-
-                <p>
-                  And while our tools and technology keep evolving, one thing hasn't changed:
-                </p>
-
-                <p className="text-white font-semibold">
-                  we're still here to help ideas grow into something unforgettable.
-                </p>
-              </div>
-            </div>
+              that started
+              <br />
+              it all.
+            </h3>
           </div>
 
-          {/* Right Column - Image Card */}
-          <div className="relative group">
-            {/* Glow effect behind card */}
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-blue-400/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          {/* Right: Story Paragraphs */}
+          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
+            <p className="text-white font-medium">Hey there,</p>
             
-            <div className="relative bg-gradient-to-br from-[#0f6fff] via-[#0b5cdc] to-[#0952c9] rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-              <div className="flex flex-col md:flex-row items-center">
-                {/* Image section */}
-                <div className="w-full md:w-1/2 relative h-64 md:h-auto">
-                  {image ? (
-                    typeof image === 'string' ? (
-                      <img
-                        src={image}
-                        alt="Team collaboration"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <Image
-                        src={image}
-                        alt="Team collaboration"
-                        width={400}
-                        height={400}
-                        className="w-full h-full object-cover"
-                      />
-                    )
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center">
-                      <div className="text-white/40 text-6xl">📋</div>
-                    </div>
-                  )}
-                  
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-blue-600/30 md:to-transparent"></div>
-                </div>
+            <p>
+              SHASHONK started with a simple idea: what if building digital
+              products didn't have to feel complicated? What if businesses—big or
+              small—had a team they could rely on to turn their ideas into
+              something smart, clean, and genuinely impactful?
+            </p>
 
-                {/* Text content */}
-                <div className="w-full md:w-1/2 p-6 md:p-8 lg:p-10">
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 md:mb-4 leading-tight">
-                    Turning Vision Into Something Real
-                  </h3>
-                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
-                    We believe great things happen when creativity meets technology.
-                  </p>
-                </div>
+            <p>
+              We're not here just to deliver projects—we're here to understand your
+              goals, challenge the usual, and build digital experiences that
+              actually make a difference. Whether it's crafting a slick website,
+              building intelligent AI solutions, or shaping a brand from scratch, we
+              bring energy, curiosity, and a "let's make it happen" attitude to every
+              project.
+            </p>
+
+            <p>
+              And while our tools and technology keep evolving, one thing hasn't
+              changed:
+              <br />
+              <span className="text-white font-semibold block mt-2">
+                we're still here to help ideas grow into something unforgettable.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom Section: Full Width Banner Card */}
+        <div className="relative w-full rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row h-[500px] md:h-[400px]">
+          
+          {/* Left: Image Side (50%) */}
+          <div className="w-full md:w-1/2 relative h-1/2 md:h-full">
+            {image ? (
+              typeof image === 'string' ? (
+                <img
+                  src={image}
+                  alt="Team collaboration"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <Image
+                  src={image}
+                  alt="Team collaboration"
+                  fill
+                  className="object-cover"
+                />
+              )
+            ) : (
+              <div className="w-full h-full bg-gray-800 flex items-center justify-center text-white/20">
+                Image Placeholder
               </div>
+            )}
+          </div>
 
-              {/* Decorative corner accent */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full"></div>
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-tr-full"></div>
-            </div>
+          {/* Right: Blue Content Side (50%) */}
+          <div className="w-full md:w-1/2 bg-[#007aff] p-8 md:p-12 lg:p-16 flex flex-col justify-center h-1/2 md:h-full text-white">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+              Turning Vision
+              <br />
+              Into Something
+              <br />
+              Real
+            </h3>
+            <p className="text-white/90 text-sm md:text-base font-medium">
+              We believe great things happen when creativity
+              <br className="hidden md:block" />
+              meets technology
+            </p>
           </div>
 
         </div>
-      </div>
 
+      </div>
     </section>
   );
 }
-

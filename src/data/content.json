@@ -57,7 +57,7 @@
       "title": "Experience",
       "subtitle": "Web, App Design & Development",
       "desc": "Creating seamless digital experiences",
-      "icon": "/api/placeholder/160/160",
+      "icon": "public\\services\\experience.png",
       "bgGradient": "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)"
     },
     {
@@ -116,29 +116,62 @@
   },
 
   "projects": [
-    { "title": "FinConnect", "image": "/images/project-1.png" },
-    { "title": "HealthSync", "image": "/images/project-2.png" },
-    { "title": "Commerce360", "image": "/images/project-3.png" },
-    { "title": "PrintWithAI", "image": "/images/project-4.png" },
-    { "title": "PM Insights", "image": "/images/project-5.png" },
-    { "title": "Commerce360", "image": "/images/project-6.png" }
+    {
+      "title": "FinConnect",
+      "category": "Customer Relationship Management (CRM)",
+      "image": "/images/project-1.png"
+    },
+    {
+      "title": "HealthSync",
+      "category": "Health Tracking App for Patients and Doctors",
+      "image": "/images/project-2.png"
+    },
+    {
+      "title": "Commerce360",
+      "category": "Online Store, Multivendor Marketplace & E-commerce Apps",
+      "image": "/images/project-3.png"
+    },
+    {
+      "title": "PrintWithAI",
+      "category": "Web-to-Print Software / Online Design Tool / Product Designer Tool",
+      "image": "/images/project-4.png"
+    },
+    {
+      "title": "PM Insights",
+      "category": "Project Management Tool (SaaS & Hosted)",
+      "image": "/images/project-5.png"
+    },
+    {
+      "title": "Commerce360",
+      "category": "Online Store, Multivendor Marketplace & E-commerce Apps",
+      "image": "/images/project-6.png"
+    }
   ],
 
   "testimonials": [
     {
-      "quote": "SHASHONK didn’t just build our product—they understood our vision better than we did.",
+      "quote": "SHASHONK didn't just build our product—they understood our vision better than we did. The team moves fast, communicates clearly, and delivers quality that speaks for itself.",
       "author": "Aarav M",
-      "role": "Founder"
+      "role": "Founder",
+      "project": "E-Commerce Revamp",
+      "location": "Chennai, India",
+      "companyLogo": "/images/campion-logo.png" 
     },
     {
-      "quote": "We were struggling with our digital presence until these guys stepped in. Everything felt smooth and effortless.",
+      "quote": "We were struggling with our digital presence until these guys stepped in. From branding to website revamp, everything felt smooth and effortless. Easily one of the best teams we've worked with.",
       "author": "Sarah L.",
-      "role": "Marketing Lead"
+      "role": "Marketing Lead",
+      "project": "E-commerce Development",
+      "location": "Delhi, India",
+      "companyLogo": "/images/kiri-logo.png"
     },
     {
-      "quote": "They delivered performance, experience, and UI that exceeded expectations.",
+      "quote": "We approached SHASHONK for the EduWave Learning App, and they brought it to life better than we imagined. The UI, performance, and experience—our users love it. Easily one of the best decisions we made.",
       "author": "Megan",
-      "role": "CTO, MasterStudy"
+      "role": "CTO, MasterStudy",
+      "project": "Edu Wave App",
+      "location": "Bangalore, India",
+      "companyLogo": "/images/masterstudy-logo.png"
     }
   ],
 
