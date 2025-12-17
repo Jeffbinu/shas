@@ -11,7 +11,7 @@ interface HowWeWorkProps {
 
 export default function HowWeWork({ data }: HowWeWorkProps) {
   return (
-    <section className="relative py-12 md:py-16 lg:py-20 bg-[#0a1525] overflow-hidden">
+    <section className="relative py-12 md:py-16 lg:py-20  overflow-hidden">
       {/* Background gradient effects (Global) */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 left-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>

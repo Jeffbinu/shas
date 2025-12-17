@@ -57,12 +57,12 @@ Usage in your components:
 
 html,body,#root {
   height:100%;
+  background-color: #030C20;
 }
 
 body {
   font-family: "Poppins", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color: #e6eefb;
-  background: linear-gradient(180deg, #061125 0%, #030815 100%);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }

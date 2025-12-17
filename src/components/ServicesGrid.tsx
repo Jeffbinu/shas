@@ -56,9 +56,9 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
         }
       `}</style>
       
-      <section className="relative py-16 md:py-20 lg:py-24 bg-gradient-to-b from-[#0a1525] via-[#0d1832] to-[#0a1525] overflow-hidden">
+      <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden">
         {/* Background gradient effects */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/5 via-transparent to-transparent"></div>
+        <div className="absolute inset-0  from-purple-900/5 via-transparent to-transparent"></div>
         
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           {/* Header */}

@@ -3,7 +3,7 @@ import React from "react";
 
 export default function ProductFeatures() {
   return (
-    <section className="relative py-16 md:py-24 bg-[#050a14] overflow-hidden">
+    <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background Ambience (Optional to match dark theme) */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-blue-900/20 rounded-full blur-[100px] pointer-events-none" />
 

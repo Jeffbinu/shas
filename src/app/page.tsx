@@ -68,7 +68,7 @@ export default function HomePage() {
     <>
       <Hero {...hero} />
       <PartnersLogos logos={logos} />
-      <OurStory />
+      <OurStory videoSrc="/ourstory/ourstory_clip.mp4" />
       <ServicesGrid items={services} />
       <HowWeWork data={how} />
       <ProductFeatures />

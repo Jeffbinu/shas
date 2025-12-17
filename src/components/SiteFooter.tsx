@@ -10,7 +10,7 @@ export default function SiteFooter({
   };
 }) {
   return (
-    <footer className="bg-[#030615] py-12">
+    <footer className=" py-12">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
           <div className="flex items-center gap-3 mb-4">
