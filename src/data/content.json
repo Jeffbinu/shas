@@ -1,21 +1,20 @@
 {
   "site": {
     "title": "SHASHONK",
-    "logo": "/images/logo.svg",
+    "logo": "/logo.svg",
     "nav": [
-      { "label": "Home", "href": "/" },
-      { "label": "About Us", "href": "#about" },
-      { "label": "Our Service", "href": "#services" },
-      { "label": "Our Projects", "href": "#projects" },
-      { "label": "Our clients", "href": "#clients" },
+      { "label": "Home", "href": "#home" },
+      { "label": "About Us", "href": "#about-us" },
+      { "label": "Our Service", "href": "#our-service" },
+      { "label": "Our Projects", "href": "#our-projects" },
+      { "label": "Our clients", "href": "#our-clients" },
       { "label": "Contact Us", "href": "#contact" }
     ],
     "contact": {
-      "email": "info@shashonk.com",
-      "phone": "+91 6380779941"
+      "email": "hello@example.com",
+      "phone": "+91 99999 99999"
     }
   },
-
   "hero": {
     "headline": "Intellectual Wisdom In Technology",
     "subhead": "We craft digital experiences and intelligent solutions that help businesses grow, compete, and lead in the modern world.",
@@ -155,7 +154,7 @@
       "role": "Founder",
       "project": "E-Commerce Revamp",
       "location": "Chennai, India",
-      "companyLogo": "/images/campion-logo.png" 
+      "companyLogo": "/images/campion-logo.png"
     },
     {
       "quote": "We were struggling with our digital presence until these guys stepped in. From branding to website revamp, everything felt smooth and effortless. Easily one of the best teams we've worked with.",

@@ -1,9 +1,14 @@
+// app/page.tsx
 import Hero from "../components/Hero";
 import PartnersLogos from "../components/PartnersLogos";
 import OurStory from "../components/OurStory";
 import ServicesGrid from "../components/ServicesGrid";
 import ProductFeatures from "../components/ProductFeatures";
 import BlogPreviewGrid from "../components/BlogPreviewGrid";
+import HowWeWork from "@/components/HowWeWork";
+import ProjectsGrid from "@/components/ProjectsGrid";
+import TestimonialsGrid from "@/components/TestimonialsGrid";
+
 import {
   getHero,
   getServices,
@@ -23,12 +28,14 @@ import prt7 from "../../public/partners/partner7.png";
 import experience from "../../public/services/experience.png";
 import intellegence from "../../public/services/intellegence.png";
 import scalability from "../../public/services/scalability.png";
-import HowWeWork from "@/components/HowWeWork";
-import ProjectsGrid from "@/components/ProjectsGrid";
-import TestimonialsGrid from "@/components/TestimonialsGrid";
 
 export default function HomePage() {
   const hero = getHero();
+  const how = getHow();
+  const projects = getProjects();
+  const testimonials = getTestimonials();
+  const logos = [prt1, prt2, prt3, prt4, prt5, prt6, prt7];
+
   const services = [
     {
       title: "Experience",
@@ -58,23 +65,54 @@ export default function HomePage() {
       bgGradient: "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)",
     },
   ];
-  const how = getHow();
-  const projects = getProjects();
-  const testimonials = getTestimonials();
-
-  const logos = [prt1, prt2, prt3, prt4, prt5, prt6, prt7];
 
   return (
     <>
+      {/* Home / Hero */}
       <Hero {...hero} />
-      <PartnersLogos logos={logos} />
-      <OurStory videoSrc="/ourstory/ourstory_clip.mp4" />
-      <ServicesGrid items={services} />
-      <HowWeWork data={how} />
-      <ProductFeatures />
-      <ProjectsGrid items={projects} />
-      <TestimonialsGrid items={testimonials} />
-      <BlogPreviewGrid />
+
+      {/* Our clients / partners */}
+      <section id="our-clients">
+        <PartnersLogos logos={logos} />
+      </section>
+
+      {/* About us */}
+      <section id="about-us">
+        <OurStory videoSrc="/ourstory/ourstory_clip.mp4" />
+      </section>
+
+      {/* Our service */}
+      <section id="our-service">
+        <ServicesGrid items={services} />
+      </section>
+
+      {/* How we work */}
+      <section id="how-we-work">
+        <HowWeWork data={how} />
+      </section>
+
+      {/* Features */}
+      <section id="features">
+        <ProductFeatures />
+      </section>
+
+      {/* Our projects */}
+      <section id="our-projects">
+        <ProjectsGrid items={projects} />
+      </section>
+
+      {/* Testimonials */}
+      <section id="testimonials">
+        <TestimonialsGrid items={testimonials} />
+      </section>
+
+      {/* Blog */}
+      <section id="blog">
+        <BlogPreviewGrid />
+      </section>
+
+      {/* Contact (optional separate section) */}
+      <section id="contact" className="pb-16" />
     </>
   );
 }

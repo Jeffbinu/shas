@@ -12,16 +12,22 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   const site = getSite();
+
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col">
+      <body className="min-h-screen flex flex-col bg-[#030C20]">
+        {/* Fixed header at top */}
         <Header site={site} />
-        <main className="flex-1">{children}</main>
+        {/* Offset for fixed header height (~96px) */}
+        <main className="flex-1 pt-24">{children}</main>
         <SiteFooter
           site={{
             title: site.title,
             logo: site.logo,
-            contact: { email: site.contact?.email, phone: site.contact?.phone },
+            contact: {
+              email: site.contact?.email,
+              phone: site.contact?.phone,
+            },
           }}
         />
       </body>

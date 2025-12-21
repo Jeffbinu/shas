@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,20 +12,19 @@ export default function Header({
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="absolute w-full top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
+      <div
+        className="absolute left-0  top-0 w-full h-full inset-[10%] opacity-80"
+        style={{
+          background:
+            "radial-gradient(circle at 10% 0%, rgba(59,130,246,0.8) 0, transparent 55%), radial-gradient(circle at 90% 100%, rgba(168,85,247,0.9) 0, transparent 55%)",
+        }}
+      />
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="relative h-24 flex items-center justify-between">
-          
           {/* LEFT: Logo Area */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 sm:h-12 sm:w-12">
-              <Image
-                src={site.logo}
-                alt={site.title}
-                fill
-                className="object-contain"
-              />
-            </div>
+          <Link href="#home" className="flex items-center gap-3 group">
+            <div className="relative h-10 w-10 sm:h-12 sm:w-12">I</div>
             <div className="flex flex-col">
               <span className="font-bold tracking-wide text-white text-xl uppercase leading-none">
                 {site.title}
@@ -60,7 +60,7 @@ export default function Header({
 
         {/* Mobile Dropdown */}
         {open && (
-          <div className="absolute left-0 right-0 top-full bg-[#0a1525]/95 backdrop-blur-md border-b border-white/10 lg:hidden shadow-2xl">
+          <div className="absolute left-0 right-0 top-full bg-[#030C20]/95 backdrop-blur-lg border-b border-white/10 lg:hidden shadow-2xl">
             <div className="flex flex-col p-6 gap-4">
               {site.nav?.map((n) => (
                 <Link
