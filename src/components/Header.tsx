@@ -1,30 +1,43 @@
 "use client";
-
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import prt2 from "../../public/partners/partner2.png";
+import logo from "../../public/header/shLogo.png";
 
 type NavItem = { label: string; href: string };
 
 export default function Header({
   site,
-}: Readonly<{ site: { title: string; logo: string; nav: NavItem[] } }>) {
+}: Readonly<{ site: { title: string; nav: NavItem[] } }>) {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
+    <header className="fixed inset-x-0 top-0 z-50 bg-inherit">
+
+
       <div
-        className="absolute left-0  top-0 w-full h-full inset-[10%] opacity-80"
+        className="absolute inset-0 opacity-40 mix-blend-soft-light z-10"
         style={{
-          background:
-            "radial-gradient(circle at 10% 0%, rgba(59,130,246,0.8) 0, transparent 55%), radial-gradient(circle at 90% 100%, rgba(168,85,247,0.9) 0, transparent 55%)",
+          backgroundImage: "url('/hero/noise.png')",
+          backgroundRepeat: "repeat",
+          backgroundSize: "128px 128px",
         }}
       />
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="absolute left-0  top-0 w-full h-full inset-[10%] opacity-80" />
+      <div className="mx-auto px-6 lg:px-12">
         <div className="relative h-24 flex items-center justify-between">
           {/* LEFT: Logo Area */}
           <Link href="#home" className="flex items-center gap-3 group">
-            <div className="relative h-10 w-10 sm:h-12 sm:w-12">I</div>
+            <div className="relative h-full w-10 sm:h-12 sm:w-12">
+              <Image
+                src={logo}
+                alt={`${site.title} logo`}
+                className="h-full w-full object-contain group-hover:rotate-6 transition-transform"
+                height={100}
+                width={100}
+              />
+            </div>
             <div className="flex flex-col">
               <span className="font-bold tracking-wide text-white text-xl uppercase leading-none">
                 {site.title}

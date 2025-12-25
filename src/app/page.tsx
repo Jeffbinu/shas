@@ -64,6 +64,15 @@ export default function HomePage() {
       icon: scalability,
       bgGradient: "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)",
     },
+    {
+      title: "Scalability",
+      subtitle: "Cloud Solutions",
+      desc: "Scalable infrastructure for growth",
+      expandedDesc:
+        "We design secure, scalable, and high-performance cloud infrastructures tailored to your needs. Whether migrating, optimizing, or building cloud-native products—we ensure reliability, speed, and effortless growth.",
+      icon: scalability,
+      bgGradient: "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)",
+    },
   ];
 
   return (

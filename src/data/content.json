@@ -1,7 +1,6 @@
 {
   "site": {
     "title": "SHASHONK",
-    "logo": "/logo.svg",
     "nav": [
       { "label": "Home", "href": "#home" },
       { "label": "About Us", "href": "#about-us" },

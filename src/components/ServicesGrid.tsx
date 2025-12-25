@@ -19,48 +19,36 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
   return (
     <>
       <style jsx global>{`
-        @keyframes wave-highlight {
-          0% {
-            transform: translateY(100%);
-            opacity: 0;
-          }
-          30% {
-            opacity: 0.8;
-          }
-          70% {
-            opacity: 0.8;
-          }
-          100% {
-            transform: translateY(-100%);
-            opacity: 0;
-          }
+        @keyframes shimmer-sweep-quick {
+          0% { transform: translateX(-150%) skewX(-20deg); }
+          100% { transform: translateX(250%) skewX(-20deg); }
         }
-        
+
+        .animate-shimmer-quick {
+          animation: shimmer-sweep-quick 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
         @keyframes slide-up {
-          from {
-            transform: translateY(40px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
         }
-        
-        .animate-wave-highlight {
-          animation: wave-highlight 1.5s ease-out infinite;
-        }
-        
+
         .animate-slide-up {
-          animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: slide-up 1s ease-out forwards;
+        }
+        
+        /* HIDE SCROLLBAR UTILITY */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
       `}</style>
-      
-      <section className="relative py-16 md:py-20 lg:py-24 overflow-hidden">
-        {/* Background gradient effects */}
-        <div className="absolute inset-0  from-purple-900/5 via-transparent to-transparent"></div>
-        
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+
+      <section className="relative overflow-hidden bg-[#030C20]">
+        <div className="relative  mx-auto px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-12 md:mb-16">
             <div className="inline-flex items-center mb-6">
@@ -68,16 +56,16 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
                 Our Services
               </span>
             </div>
-            
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
               What We do
             </h2>
           </div>
 
-          {/* Services Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="flex gap-6 lg:gap-8 overflow-x-auto scrollbar-hide pb-10 snap-x snap-mandatory px-4 -mx-4">
             {items.map((service, idx) => (
-              <ServiceCard key={idx} service={service} />
+              <div key={idx} className="min-w-[85vw] md:min-w-[45vw] lg:min-w-[30%] snap-center">
+                <ServiceCard service={service} />
+              </div>
             ))}
           </div>
         </div>
@@ -90,130 +78,126 @@ function ServiceCard({ service }: { service: ServiceItem }) {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <div 
-      className="relative group rounded-3xl overflow-hidden transition-all duration-500 cursor-pointer"
-      style={{
-        background: service.bgGradient,
-      }}
+    <div
+      className="relative group rounded-[2rem] overflow-hidden transition-all duration-500 cursor-pointer h-[420px] lg:h-[35rem]"
+      style={{ background: service.bgGradient }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      {/* Animated wave highlight effect - ALWAYS visible on hover */}
+      {/* 
+          1. SHIMMER LAYER 
+      */}
       {isHovering && (
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-t from-blue-500/50 via-blue-400/30 to-transparent animate-wave-highlight"></div>
+        <div className="absolute inset-0 z-30 pointer-events-none">
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer-quick" />
         </div>
       )}
-      
-      {/* Card content */}
-      <div className="relative backdrop-blur-sm bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 rounded-3xl p-8 h-[420px] lg:h-[35rem] flex flex-col">
-        
-        {/* Collapsed State - Default */}
+
+      {/* 
+          2. BIG ICON (Figma Style) 
+      */}
+      <div className="absolute top-0 right-[-40px] h-[70%] w-[70%] opacity-10 pointer-events-none z-0 transition-transform duration-700 group-hover:scale-105 group-hover:rotate-6">
+        <Image
+          src={service.icon}
+          alt=""
+          width={100}
+          height={100}
+          className="object-contain h-full w-full rotate-12"
+        />
+      </div>
+
+      {/* 
+          3. CONTENT LAYER 
+      */}
+      <div className="relative z-10 bg-white/[0.02] border border-white/5 h-full p-8 flex flex-col rounded-[2rem]">
+        {/* COLLAPSED STATE (Default) */}
         {!isHovering && (
           <>
-            {/* Top badge */}
             <div className="mb-6">
-              <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-xs font-medium">
+              <span className="inline-block px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white/80 text-xs font-medium">
                 Our Services
               </span>
             </div>
 
-            {/* Icon */}
-            <div className="mb-auto flex items-center justify-center py-8">
-              <Image
-                src={service.icon}
-                alt={service.title}
-                width={160}
-                height={160}
-                className="object-contain opacity-70 transition-opacity duration-500"
-              />
-            </div>
+            {/* Middle Spacer */}
+            <div className="flex-grow" />
 
-            {/* Text content */}
-            <div className="space-y-3">
-              <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-[#2fa4ff] to-[#5cb8ff] bg-clip-text text-transparent">
+            <div className="space-y-3 mb-8">
+              <h3 className="text-4xl md:text-5xl font-bold text-[#3b82f6]">
                 {service.title}
               </h3>
-              <p className="text-white font-semibold text-base md:text-lg">
+              <p className="text-white font-medium text-lg leading-snug">
                 {service.subtitle}
               </p>
             </div>
 
-            {/* Bottom arrow button - Down */}
-            <div className="mt-6 flex justify-center">
-              <button 
-                aria-label={`Learn more about ${service.title}`}
-                className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-all duration-300"
-              >
-                <svg 
-                  className="w-6 h-6" 
-                  fill="none" 
-                  stroke="currentColor" 
+            {/* Down Arrow */}
+            <div className="flex justify-center">
+              <div className="w-12 h-12 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/50 group-hover:text-white transition-colors">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M19 9l-7 7-7-7" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
                   />
                 </svg>
-              </button>
+              </div>
             </div>
           </>
         )}
 
-        {/* Expanded State - On Hover */}
+        {/* EXPANDED STATE (Hover) */}
         {isHovering && (
           <div className="animate-slide-up flex flex-col h-full">
-            {/* Top badge */}
             <div className="mb-6">
               <span className="inline-block px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white/80 text-xs font-medium">
                 Our Services
               </span>
             </div>
 
-            {/* Icon - Smaller */}
-            <div className="flex items-center justify-center mb-6">
+            {/* Small Icon */}
+            <div className="mb-6">
               <Image
                 src={service.icon}
                 alt={service.title}
-                width={100}
-                height={100}
-                className="object-contain opacity-90"
+                width={60}
+                height={60}
+                className="object-contain opacity-100"
               />
             </div>
 
-            {/* Text content */}
             <div className="space-y-4 mb-auto">
-              <p className="text-white font-bold text-xl md:text-2xl">
+              <h3 className="text-2xl font-bold text-white">
                 {service.subtitle}
-              </p>
-              <p className="text-white/80 text-sm md:text-base leading-relaxed">
+              </h3>
+              <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                 {service.expandedDesc || service.desc}
               </p>
             </div>
 
-            {/* Bottom arrow button - Up */}
+            {/* Up Arrow */}
             <div className="mt-6 flex justify-center">
-              <button 
-                aria-label={`Collapse ${service.title}`}
-                className="w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-black/60 transition-all duration-300"
-              >
-                <svg 
-                  className="w-6 h-6" 
-                  fill="none" 
-                  stroke="currentColor" 
+              <div className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all">
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M5 15l7-7 7 7" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M5 15l7-7 7 7"
                   />
                 </svg>
-              </button>
+              </div>
             </div>
           </div>
         )}

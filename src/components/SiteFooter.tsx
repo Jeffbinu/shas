@@ -2,19 +2,25 @@ import Image from "next/image";
 
 export default function SiteFooter({
   site,
-}: {
+}: Readonly<{
   site: {
     title: string;
-    logo: string;
     contact?: { email?: string; phone?: string };
   };
-}) {
+}>) {
   return (
     <footer className=" py-12">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div>
-          <div className="flex items-center gap-3 mb-4">
-            <Image src={site.logo} alt={site.title} width={40} height={40} />
+          <div className="flex items-center gap-3 mb-4 w-[2rem]">
+            <Image
+              src="/header/sLogo.png"
+              alt={`${site.title} logo`}
+              className="h-full w-full object-contain group-hover:rotate-6 transition-transform"
+              height={100}
+              width={100}
+            />
+
             <div className="font-semibold">{site.title}</div>
           </div>
           <p className="text-white/70">

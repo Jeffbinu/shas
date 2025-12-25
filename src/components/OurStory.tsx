@@ -7,8 +7,20 @@ interface OurStoryProps {
 
 export default function OurStory({ videoSrc }: OurStoryProps) {
   return (
-    <section className="relative py-16 md:py-24  overflow-hidden">
-      <div className="relative max-w-7xl mx-auto px-6">
+    <section className="relative overflow-hidden bg-[#030C20] py-6">
+      {/* 
+        1. LOCAL ANIMATION DEFINITION
+        We use a wider range (300% to -300%) to ensure the light starts 
+        completely off-screen and exits completely off-screen.
+      */}
+      <style>{`
+        @keyframes shimmer-move {
+          0% { background-position: 300% center; }
+          100% { background-position: -300% center; }
+        }
+      `}</style>
+
+      <div className="relative mx-auto px-6">
         {/* Top Header */}
         <div className="text-center mb-16 md:mb-20">
           <div className="inline-block px-6 py-1.5 mb-6 bg-white rounded-full">
@@ -22,44 +34,47 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
         </div>
 
         {/* Middle Section: Split Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
-          {/* Left: Headline Text */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 lg:px-[2rem] ">
+          {/* Left: Headline Text with ANIMATION */}
           <div className="flex flex-col justify-start pt-4">
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-400 mb-2 leading-tight">
               Idea to impact
             </h3>
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#0f172a] leading-tight">
-              The spark
-              <br />
-              that started
-              <br />
-              it all.
+
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+              <span className="inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_90%] animate-[shimmer-move_9s_linear_infinite] pb-2">
+                The spark
+                <br />
+                that started
+                <br />
+                it all.
+              </span>
             </h3>
           </div>
 
           {/* Right: Story Paragraphs */}
-          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed">
+          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed font-light">
             <p className="text-white font-medium">Hey there,</p>
 
             <p>
               SHASHONK started with a simple idea: what if building digital
-              products didn&apos;t have to feel complicated? What if businesses—big
-              or small—had a team they could rely on to turn their ideas into
-              something smart, clean, and genuinely impactful?
+              products didn&apos;t have to feel complicated? What if
+              businesses—big or small—had a team they could rely on to turn
+              their ideas into something smart, clean, and genuinely impactful?
             </p>
 
             <p>
-              We&apos;re not here just to deliver projects—we&apos;re here to understand
-              your goals, challenge the usual, and build digital experiences
-              that actually make a difference. Whether it&apos;s crafting a slick
-              website, building intelligent AI solutions, or shaping a brand
-              from scratch, we bring energy, curiosity, and a &quot;let&apos;s make it
-              happen&quot; attitude to every project.
+              We&apos;re not here just to deliver projects—we&apos;re here to
+              understand your goals, challenge the usual, and build digital
+              experiences that actually make a difference. Whether it&apos;s
+              crafting a slick website, building intelligent AI solutions, or
+              shaping a brand from scratch, we bring energy, curiosity, and a
+              &quot;let&apos;s make it happen&quot; attitude to every project.
             </p>
 
             <p>
-              And while our tools and technology keep evolving, one thing hasn&apos;t
-              changed:
+              And while our tools and technology keep evolving, one thing
+              hasn&apos;t changed:
               <br />
               <span className="text-white font-semibold block mt-2">
                 we&apos;re still here to help ideas grow into something
@@ -85,7 +100,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
                 Your browser does not support the video tag.
               </video>
             ) : (
-              <div className="w-full h-full flex items-center justify-center text-white/20">
+              <div className="w-full h-full flex items-center justify-center bg-gray-900 text-white/20">
                 Video Placeholder
               </div>
             )}

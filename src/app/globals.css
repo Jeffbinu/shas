@@ -4,7 +4,7 @@
 @import "tailwindcss";
 
 :root{
-  --primary-500: #0f6fff;
+  --primary-500: #030C20;
   --primary-600: #0b5cdc;
   --muted-white: rgba(255,255,255,0.85);
 }

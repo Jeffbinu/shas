@@ -23,7 +23,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <SiteFooter
           site={{
             title: site.title,
-            logo: site.logo,
             contact: {
               email: site.contact?.email,
               phone: site.contact?.phone,
