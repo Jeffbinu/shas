@@ -15,11 +15,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col bg-[#030C20]">
+      <body className="min-h-screen flex flex-col ">
         {/* Fixed header at top */}
         <Header site={site} />
         {/* Offset for fixed header height (~96px) */}
-        <main className="flex-1 pt-24">{children}</main>
+        <main className="flex-1">{children}</main>
         <SiteFooter
           site={{
             title: site.title,

@@ -28,6 +28,7 @@ import prt7 from "../../public/partners/partner7.png";
 import experience from "../../public/services/experience.png";
 import intellegence from "../../public/services/intellegence.png";
 import scalability from "../../public/services/scalability.png";
+import ContactSection from "@/components/ContactSection";
 
 export default function HomePage() {
   const hero = getHero();
@@ -76,52 +77,60 @@ export default function HomePage() {
   ];
 
   return (
-    <>
+    <div className="bg-[#030C20] min-h-screen text-white overflow-hidden">
       {/* Home / Hero */}
       <Hero {...hero} />
 
-      {/* Our clients / partners */}
-      <section id="our-clients">
-        <PartnersLogos logos={logos} />
-      </section>
+      <div className="relative">
+        <div className="absolute top-0 left-0 w-full h-[800px] pointer-events-none z-0 flex justify-center items-center">
+          <div className="w-[30%] h-[60%] bg-[#D93068] rounded-full mix-blend-screen blur-[140px] opacity-30 translate-x-[20%]" />
+          <div className="w-[30%] h-[60%] bg-[#044d9b] rounded-full mix-blend-screen blur-[140px] opacity-30 translate-x-[-20%]" />
+        </div>
 
-      {/* About us */}
-      <section id="about-us">
-        <OurStory videoSrc="/ourstory/ourstory_clip.mp4" />
-      </section>
+        {/* Our clients / partners */}
+        <section id="our-clients" className="relative z-10 ">
+          <PartnersLogos logos={logos} />
+        </section>
+
+        {/* About us */}
+        <section id="about-us" className="relative z-10 ">
+          <OurStory videoSrc="/ourstory/ourstory_clip.mp4" />
+        </section>
+      </div>
 
       {/* Our service */}
-      <section id="our-service">
+      <section id="our-service" className="">
         <ServicesGrid items={services} />
       </section>
 
       {/* How we work */}
-      <section id="how-we-work">
+      <section id="how-we-work" className="">
         <HowWeWork data={how} />
       </section>
 
       {/* Features */}
-      <section id="features">
+      <section id="features" className="">
         <ProductFeatures />
       </section>
 
       {/* Our projects */}
-      <section id="our-projects">
+      <section id="our-projects" className="">
         <ProjectsGrid items={projects} />
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials">
+      <section id="testimonials" className="">
         <TestimonialsGrid items={testimonials} />
       </section>
 
       {/* Blog */}
-      <section id="blog">
+      <section id="blog" className="">
         <BlogPreviewGrid />
       </section>
 
-      {/* Contact (optional separate section) */}
-      <section id="contact" className="pb-16" />
-    </>
+      <section id="contact" className="">
+        <ContactSection />
+      </section>
+    </div>
   );
 }

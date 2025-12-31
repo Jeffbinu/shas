@@ -1,36 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
 /* Import Tailwind v4 (this replaces old @tailwind directives) */
 @import "tailwindcss";
 
-:root{
-  --primary-500: #030C20;
+:root {
+  --primary-500: #030c20;
   --primary-600: #0b5cdc;
-  --muted-white: rgba(255,255,255,0.85);
+  --muted-white: rgba(255, 255, 255, 0.85);
 }
 
 @theme {
   /* Extra Small Devices - Small phones */
-  --breakpoint-xs: 20rem;    /* 320px */
-  
+  --breakpoint-xs: 20rem; /* 320px */
+
   /* Small Devices - Phones (default: 640px) */
-  --breakpoint-sm: 40rem;    /* 640px */
-  
+  --breakpoint-sm: 40rem; /* 640px */
+
   /* Medium Devices - Tablets (default: 768px) */
-  --breakpoint-md: 48rem;    /* 768px */
-  
+  --breakpoint-md: 48rem; /* 768px */
+
   /* Large Devices - Small laptops (default: 1024px) */
-  --breakpoint-lg: 64rem;    /* 1024px */
-  
+  --breakpoint-lg: 64rem; /* 1024px */
+
   /* Extra Large Devices - Desktops (default: 1280px) */
-  --breakpoint-xl: 80rem;    /* 1280px */
-  
+  --breakpoint-xl: 80rem; /* 1280px */
+
   /* 2X Large Devices - Large desktops (default: 1536px) */
-  --breakpoint-2xl: 96rem;   /* 1536px */
-  
+  --breakpoint-2xl: 96rem; /* 1536px */
+
   /* Optional: Additional custom breakpoints */
-  --breakpoint-3xl: 120rem;  /* 1920px - Full HD screens */
-  --breakpoint-4xl: 160rem;  /* 2560px - 2K/4K screens */
+  --breakpoint-3xl: 120rem; /* 1920px - Full HD screens */
+  --breakpoint-4xl: 160rem; /* 2560px - 2K/4K screens */
 }
 
 /* 
@@ -55,19 +55,28 @@ Usage in your components:
 </div>
 */
 
-html,body,#root {
-  height:100%;
-  background-color: #030C20;
+html,
+body,
+#root {
+  height: 100%;
+  background-color: #030c20;
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Poppins", Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: "Poppins", Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
   color: #e6eefb;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1,h2,h3,h4 { -webkit-font-smoothing:antialiased; }
+h1,
+h2,
+h3,
+h4 {
+  -webkit-font-smoothing: antialiased;
+}
 
 .headline-gradient {
   -webkit-background-clip: text;
@@ -76,19 +85,134 @@ h1,h2,h3,h4 { -webkit-font-smoothing:antialiased; }
 
 /* subtle card glass */
 .glass-card {
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(6px);
 }
 
 /* pill label */
 .pill {
-  display:inline-block;
-  background: rgba(255,255,255,0.06);
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
   padding: 6px 12px;
   border-radius: 999px;
   font-size: 12px;
 }
 
 /* small helpers */
-.soft-title { color: rgba(255,255,255,0.55); }
+.soft-title {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* our story section */
+
+@keyframes shimmer-move {
+  0% {
+    background-position: 300% center;
+  }
+  100% {
+    background-position: -300% center;
+  }
+}
+
+/* HIDE SCROLLBAR UTILITY */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+/* How we work section */
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+.group:hover .animate-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes shimmer-sweep-quick {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+  }
+}
+.animate-shimmer-quick {
+  animation: shimmer-sweep-quick 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* OUR SERVICEs */
+
+@keyframes glide-up-smooth {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-glide-smooth {
+  animation: glide-up-smooth 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* HIDE SCROLLBAR */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Header Styke */
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-down {
+  animation: slide-down 0.1s ease-out;
+}
+
+/* OUR SERVICES END */

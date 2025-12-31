@@ -7,22 +7,17 @@ interface OurStoryProps {
 
 export default function OurStory({ videoSrc }: OurStoryProps) {
   return (
-    <section className="relative overflow-hidden bg-[#030C20] py-6">
-      {/* 
-        1. LOCAL ANIMATION DEFINITION
-        We use a wider range (300% to -300%) to ensure the light starts 
-        completely off-screen and exits completely off-screen.
-      */}
+    <section className="relative overflow-visible bg-transparent py-16  lg:px-8">
       <style>{`
         @keyframes shimmer-move {
-          0% { background-position: 300% center; }
+          0% { background-position: 300% center; }  
           100% { background-position: -300% center; }
         }
       `}</style>
 
       <div className="relative mx-auto px-6">
         {/* Top Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-16 md:mb-20 relative">
           <div className="inline-block px-6 py-1.5 mb-6 bg-white rounded-full">
             <span className="text-[#0a1525] text-sm font-bold tracking-wide uppercase">
               About us
@@ -32,17 +27,16 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
             Our Story
           </h2>
         </div>
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_55%] gap-12 lg:gap-20 mb-20">
+          <div className="absolute bottom-[20%] left-[10%] w-[40%] h-[30%] bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-20" />
 
-        {/* Middle Section: Split Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20 lg:px-[2rem] ">
-          {/* Left: Headline Text with ANIMATION */}
           <div className="flex flex-col justify-start pt-4">
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-400 mb-2 leading-tight">
               Idea to impact
             </h3>
 
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_90%] animate-[shimmer-move_9s_linear_infinite] pb-2">
+              <span className="inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_100%] animate-[shimmer-move_8s_linear_infinite] pb-2">
                 The spark
                 <br />
                 that started
@@ -52,7 +46,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
             </h3>
           </div>
 
-          {/* Right: Story Paragraphs */}
+          {/* Right: Story Paragraphs (60%) */}
           <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed font-light">
             <p className="text-white font-medium">Hey there,</p>
 
@@ -85,9 +79,10 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
         </div>
 
         {/* Bottom Section: Full Width Banner Card */}
-        <div className="relative w-full rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row h-[500px] md:h-[400px]">
+        <div className="relative w-full  rounded-[2.5rem]  overflow-hidden  flex flex-col md:flex-row h-[500px]">
           {/* Left: Video Side (50%) */}
-          <div className="w-full md:w-1/2 relative h-1/2 md:h-full">
+
+          <div className="w-full  md:w-1/2 relative h-1/2 md:h-full">
             {videoSrc ? (
               <video
                 className="w-full h-full object-cover"
