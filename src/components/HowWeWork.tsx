@@ -95,27 +95,26 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
                 {/* Gradients */}
                 <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-[#007aff] rounded-full mix-blend-screen blur-[60px] opacity-80" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] bg-[#D93068] rounded-full mix-blend-screen blur-[60px] opacity-60" />
-                <div className="absolute top-[30%] left-[30%] w-[40%] h-[40%] bg-[#22d3ee] rounded-full mix-blend-screen blur-[40px] opacity-50" />
+                <div className="absolute top-[30%] left-[30%] w-[40%] h-[40%] bg-[#22d3ee] rounded-full mix-blend-screen blur-2xl opacity-50" />
 
                 {/* Noise */}
                 <div
-                  className="absolute inset-0 opacity-40 mix-blend-overlay"
+                  className="absolute inset-0 opacity-40 mix-blend-soft-light z-10"
                   style={{
                     backgroundImage: "url('/hero/noise.png')",
-                    backgroundSize: "100px 100px",
                   }}
                 />
 
                 {/* Content */}
-                <div className="relative h-full w-full flex flex-col justify-center items-center text-center px-8">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-lg">
+                <div className="relative h-full w-full flex flex-col justify-center items-start px-8 pl-[30%]">
+                  <h3 className="text-3xl md:text-4xl lg:text-[2rem] font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-lg">
                     SIMPLE,
                     <br />
                     TRANSPARENT,
                     <br />
                     EFFECTIVE
                   </h3>
-                  <p className="text-blue-100/90 text-sm md:text-base leading-relaxed font-medium drop-shadow-md">
+                  <p className="text-blue-100/90 text-sm lg:text-[1.5rem] md:text-base leading-relaxed font-medium drop-shadow-md">
                     We craft digital experiences and intelligent solutions that
                     help businesses grow.
                   </p>

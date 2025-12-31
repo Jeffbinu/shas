@@ -1,9 +1,69 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import WomenImage from "../../public/hero/women.png";
 
 type CTA = { href: string; label: string };
+
+const AnimatedCounter = ({
+  end,
+  suffix = "",
+  duration = 2000,
+}: {
+  end: number;
+  suffix?: string;
+  duration?: number;
+}) => {
+  const [count, setCount] = useState(0);
+  const countRef = useRef<HTMLSpanElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    if (countRef.current) {
+      observer.observe(countRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+      // Easing function for speedometer effect (starts fast, slows down)
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+
+      setCount(Math.floor(easeOutQuart * end));
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }, [isVisible, end, duration]);
+
+  return (
+    <span ref={countRef}>
+      {count}
+      {suffix}
+    </span>
+  );
+};
 
 export default function Hero({
   headline,
@@ -21,14 +81,15 @@ export default function Hero({
   const link = ctaPrimary?.href || "#services";
   const label = ctaPrimary?.label || "Explore Our services";
 
+  const statsData = [
+    { value: 100, suffix: "+", label: "Completed Projects" },
+    { value: 100, suffix: "+", label: "Satisfied Clients" },
+    { value: 73, suffix: "%", label: "New Orders" },
+    { value: 10, suffix: "K+", label: "Active Users" },
+  ];
+
   return (
     <section className="relative h-[120vh] flex items-start justify-around overflow-hidden pb-20 lg:pb-0 bg-[#030C20]">
-      {/* 
-        ANIMATION DEFINITIONS 
-        - move-blob-1: Top-Left <-> Center-Right
-        - move-blob-2: Bottom-Right <-> Top-Center
-        - move-blob-3: Circular/Elliptical drift
-      */}
       <style>{`
         @keyframes move-blob-1 {
           0%, 100% { transform: translate(0, 0) scale(1); }
@@ -74,11 +135,11 @@ export default function Hero({
 
         {/* Noise Texture */}
         <div
-          className="absolute inset-0 opacity-80 mix-blend-soft-light z-10"
+          className="absolute inset-0 opacity-70 mix-blend-soft-light z-10 w-full h-full"
           style={{
             backgroundImage: "url('/hero/noise.png')",
             backgroundRepeat: "repeat",
-            backgroundSize: "128px 128px",
+            backgroundSize: "90% 90%",
           }}
         />
 
@@ -95,7 +156,7 @@ export default function Hero({
       {/* HERO CONTENT */}
       <div className="relative h-full w-full z-20 mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-12 lg:gap-8 items-center pt-24">
         <div className="flex flex-col justify-center order-2 lg:order-1 h-full w-[70%] text-center lg:text-left lg:pl-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-[6rem] font-bold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
+          <h1 className="text-4xl sm:text-5xl lg:text-[5rem] font-bold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-lg">
             {title}
           </h1>
           <p className="text-lg md:text-xl text-blue-100/80 max-w-xl leading-relaxed mb-10 font-light drop-shadow-md">
@@ -111,17 +172,12 @@ export default function Hero({
             </a>
           </div>
 
-          {/* Stats */}
-          <div className=" sm:w-[70%] grid grid-cols-2 sm:grid-cols-4  border-white/10 pt-8">
-            {[
-              { num: "100+", label: "Completed Projects" },
-              { num: "100+", label: "Satisfied Clients" },
-              { num: "73%", label: "New Orders" },
-              { num: "10K+", label: "Active Users" },
-            ].map((stat, i) => (
+          {/* Stats with Animation */}
+          <div className=" sm:w-[70%] grid grid-cols-2 sm:grid-cols-4 border-white/10 pt-8">
+            {statsData.map((stat, i) => (
               <div key={i} className="flex flex-col">
-                <span className="text-2xl md:text-3xl font-bold text-[#60a5fa] mb-1 drop-shadow-sm">
-                  {stat.num}
+                <span className="text-2xl md:text-3xl font-bold text-[#60a5fa] mb-1 drop-shadow-sm tabular-nums">
+                  <AnimatedCounter end={stat.value} suffix={stat.suffix} />
                 </span>
                 <span className="text-xs md:text-sm text-gray-300 font-medium">
                   {stat.label}
@@ -145,7 +201,7 @@ export default function Hero({
 
             {/* CARD 1: Happy Customer */}
             <div
-              className="absolute top-[28%] right-[0%] lg:right-[-20px] bg-white lg:p-4 rounded-2xl z-20 w-[18rem] animate-float-slow hidden sm:block"
+              className="absolute top-[40%] right-[0%] lg:right-[-20px] bg-white lg:p-4 rounded-2xl z-20 w-[18rem] animate-float-slow hidden sm:block rotate-12"
               style={{
                 boxShadow:
                   "0px 30px 52px 0px #4541713D, 0px 0px 0px 4px #FFFFFF3D",
@@ -165,7 +221,7 @@ export default function Hero({
 
             {/* CARD 2: All Designers */}
             <div
-              className="absolute bottom-[18%] left-[0%] lg:left-[-40px] bg-white lg:p-4 rounded-2xl z-20 w-[18rem]  animate-float-reverse hidden sm:block"
+              className="absolute bottom-[18%] left-[0%] lg:left-[-40px] bg-white lg:p-4 rounded-2xl z-20 w-[18rem] h-[10rem] animate-float-reverse hidden sm:block -rotate-12 flex flex-col justify-center items-center"
               style={{
                 boxShadow:
                   "0px 30px 52px 0px #4541713D, 0px 0px 0px 4px #FFFFFF3D",
