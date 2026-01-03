@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +11,7 @@ export default function BlogPreviewGrid() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -43,7 +42,7 @@ export default function BlogPreviewGrid() {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-widest font-syne">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne">
             Blog
           </h2>
         </div>

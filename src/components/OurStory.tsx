@@ -51,7 +51,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl  text-white font-syne font-bold ">
+          <h2 className="text-4xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold ">
             Our Story
           </h2>
         </div>
@@ -60,11 +60,11 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
         <div className="grid grid-cols-1 lg:grid-cols-[40%_55%] gap-12 lg:gap-20 mb-24">
           {/* Left */}
           <div className="space-y-4">
-            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-400">
+            <h3 className="text-4xl sm:text-4xl lg:text-5xl font-light text-gray-400">
               Idea to impact
             </h3>
 
-            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+            <h3 className="text-4xl sm:text-4xl lg:text-5xl font-bold leading-tight">
               <span className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_100%] animate-[shimmer_8s_linear_infinite]">
                 The spark
                 <br />
@@ -81,16 +81,24 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
 
             <p>
               SHASHONK started with a simple idea: what if building digital
-              products didn’t have to feel complicated?
+              products didn’t have to feel complicated? What if businesses—big
+              or small—had a team they could rely on to turn their ideas into
+              something smart, clean, and genuinely impactful?
             </p>
 
             <p>
-              We’re here to understand your goals, challenge the usual, and
-              build digital experiences that actually make a difference.
+              We’re not here just to deliver projects—we’re here to understand
+              your goals, challenge the usual, and build digital experiences
+              that actually make a difference. Whether it’s crafting a slick
+              website, building intelligent AI solutions, or shaping a brand
+              from scratch, we bring energy, curiosity, and a “let’s make it
+              happen” attitude to every project.
             </p>
 
             <p className="text-white font-semibold">
-              We’re still here to help ideas grow into something unforgettable.
+              And while our tools and technology keep evolving, one thing hasn’t
+              changed: we’re still here to help ideas grow into something
+              unforgettable.
             </p>
           </div>
         </div>
@@ -112,7 +120,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
 
           {/* Content */}
           <div className="w-full md:w-1/2 bg-[#007aff] p-10 sm:p-14 flex flex-col justify-center text-white">
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl mb-4 font-syne font-bold ">
+            <h3 className="text-3xl sm:text-4xl lg:text-4xl mb-4 font-syne font-bold ">
               Turning Vision
               <br />
               Into Something

@@ -11,7 +11,7 @@ export default function ProductFeatures() {
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -36,7 +36,7 @@ export default function ProductFeatures() {
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Product Features
           </h2>
         </div>
@@ -54,7 +54,7 @@ export default function ProductFeatures() {
               }
             `}
           >
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+            <h3 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight mb-8">
               <span className="text-[#3b82f6]">Future-Ready Solutions,</span>
               <br />
               <span className="text-[#3b82f6]">Built To Perform</span>

@@ -23,7 +23,7 @@ export default function ProjectsGrid({ items }: ProjectsGridProps) {
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -54,7 +54,7 @@ export default function ProjectsGrid({ items }: ProjectsGridProps) {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Completed Projects
           </h2>
         </div>
@@ -82,7 +82,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
       {/* IMAGE */}
       <div className="relative h-[380px] sm:h-[420px] w-full overflow-hidden">
         <Image
-          src={sample_pic}
+          src={project.image}
           alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -92,8 +92,8 @@ function ProjectCard({ project }: { project: ProjectItem }) {
         <div className="absolute inset-0  group-hover:bg-black/0 transition-colors duration-500" />
 
         {/* Badge */}
-        <div className="absolute top-6 left-6 z-20">
-          <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-xs font-extrabold text-gray-900 shadow-lg tracking-wide transition-transform duration-300 group-hover:scale-105">
+        <div className="absolute top-6 left-6 z-20 ">
+          <span className="inline-flex items-center font-poppins px-4 py-2 rounded-full bg-white/90 backdrop-blur-md text-xs lg:text-xs font-extrabold text-gray-900 shadow-lg tracking-wide transition-transform duration-300 group-hover:scale-105">
             Success Stories
           </span>
         </div>
@@ -121,11 +121,11 @@ function ProjectCard({ project }: { project: ProjectItem }) {
       {/* BOTTOM TAB */}
       <div className="absolute bottom-0 left-0 w-full z-20">
         <div className="relative bg-white pt-6 pb-6 px-8 rounded-tr-[3rem] min-h-[110px] w-[90%] flex flex-col justify-center translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-          <h3 className="text-xl md:text-2xl font-bold text-[#1c64f2] mb-1.5 group-hover:text-[#2563eb] transition-colors">
+          <h3 className="text-xl md:text-lg lg:text-xl font-bold text-[#1c64f2] mb-1.5 group-hover:text-[#2563eb] transition-colors font-syne">
             {project.title}
           </h3>
 
-          <p className="text-gray-500 text-xs md:text-sm font-semibold tracking-wide uppercase">
+          <p className="text-gray-500 text-xs lg:text-xs font-semibold tracking-wide font-poppins">
             {project.category}
           </p>
         </div>

@@ -1,13 +1,17 @@
-import blog_sample_1 from "../../public/blog/blog-thumbnail.jpg"; 
+import blog_sample_1 from "../../public/blog/blog-thumbnail1.jpg"; 
+import blog_sample_2 from "../../public/blog/blog-thumbnail2.jpg";
+import blog_sample_3 from "../../public/blog/blog-thumbnail3.jpg";
+
+
 
 export type BlogPost = {
   id: number;
-  slug: string; // URL-friendly identifier
+  slug: string; 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  image: any;   // StaticImageData in Next.js
+  image: any;  
   title: string;
   description: string;
-  content: string; // The full article content
+  content: string; 
   date: string;
   author: string;
 };
@@ -39,7 +43,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 2,
     slug: "ai-product-development-innovation",
-    image: blog_sample_1,
+    image: blog_sample_2,
     title: "How Our AI Product Development Company is Pioneering Innovation",
     description:
       "Discover how our product development company pioneers innovation. From groundbreaking technologies to creative strategies, we're shaping the future.",
@@ -54,7 +58,7 @@ export const blogPosts: BlogPost[] = [
   {
     id: 3,
     slug: "optimizing-ecommerce-ai-recommendations",
-    image: blog_sample_1,
+    image: blog_sample_3,
     title: "Optimizing E-commerce Sales with AI-Driven Product Recommendations",
     description:
       "Boost your e-commerce sales with AI-powered product recommendations. Learn how smart algorithms can enhance customer experience and drive conversions.",

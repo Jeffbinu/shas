@@ -126,7 +126,7 @@ export default function Hero({
         <div className="relative min-h-[78vh] flex items-center">
           {/* TEXT */}
           <div className="relative z-20 w-full lg:max-w-[80rem] text-center lg:text-left">
-            <h1 className="text-white font-syne font-bold tracking-tight leading-[1.05] text-[clamp(2.1rem,5vw,7rem)] mb-6 lg:w-[80%]">
+            <h1 className="text-white font-syne font-bold tracking-tight leading-[1.05] text-[clamp(2rem,5vw,6rem)] mb-6 lg:w-[80%]">
               {title}
             </h1>
 

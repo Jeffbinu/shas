@@ -14,7 +14,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
         setInView(entry.isIntersecting);
       },
       {
-        threshold: 0.25,
+        threshold: 0.1,
       }
     );
 
@@ -54,13 +54,13 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
             {sliderLogos.map((src, index) => (
               <div
                 key={index}
-                className="mx-8 sm:mx-12 flex items-center justify-center"
+                className="mx-8 sm:mx-12 flex items-center justify-center   "
               >
                 <Image
                   src={src}
                   alt={`partner-${index}`}
                   draggable={false}
-                  className="h-8 sm:h-10 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition"
+                  className="h-8 sm:h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition"
                 />
               </div>
             ))}

@@ -25,6 +25,14 @@ import prt5 from "../../public/partners/partner5.png";
 import prt6 from "../../public/partners/partner6.png";
 import prt7 from "../../public/partners/partner7.png";
 
+// Protfolio images
+import project1 from "../../public/protfolio/sample_pic1.png";
+import project2 from "../../public/protfolio/sample_pic2.png";
+import project3 from "../../public/protfolio/sample_pic3.jpg";
+import project4 from "../../public/protfolio/sample_pic4.png";
+import project5 from "../../public/protfolio/sample_pic5.png";
+import project6 from "../../public/protfolio/sample_pic6.jpg";
+
 import experience from "../../public/services/experience.png";
 import intellegence from "../../public/services/intellegence.png";
 import scalability from "../../public/services/scalability.png";
@@ -33,9 +41,81 @@ import ContactSection from "@/components/ContactSection";
 export default function HomePage() {
   const hero = getHero();
   const how = getHow();
-  const projects = getProjects();
-  const testimonials = getTestimonials();
+  // const projects = getProjects();
+  const testimonials = [
+    {
+      quote:
+        "SHASHONK didn't just build our product—they understood our vision better than we did. The team moves fast, communicates clearly, and delivers quality that speaks for itself.",
+      author: "Aarav M",
+      role: "Founder",
+      project: "E-Commerce Revamp",
+      location: "Chennai, India",
+      companyLogo: prt1,
+    },
+    {
+      quote:
+        "We were struggling with our digital presence until these guys stepped in. From branding to website revamp, everything felt smooth and effortless. Easily one of the best teams we've worked with.",
+      author: "Sarah L.",
+      role: "Marketing Lead",
+      project: "E-commerce Development",
+      location: "Delhi, India",
+      companyLogo: prt2,
+    },
+    {
+      quote:
+        "We approached SHASHONK for the EduWave Learning App, and they brought it to life better than we imagined. The UI, performance, and experience—our users love it. Easily one of the best decisions we made.",
+      author: "Megan",
+      role: "CTO, MasterStudy",
+      project: "Edu Wave App",
+      location: "Bangalore, India",
+      companyLogo: prt3,
+    },
+    {
+      quote:
+        "Their AI work on our DataShift Smart Forecasting System saved us hours every single day. Tasks we thought were impossible became fully automated. SHASHONK literally changed how we operate",
+      author: "Jonathan",
+      role: "CTO, MasterStudy",
+      project: "Edu Wave App",
+      location: "Bangalore, India",
+      companyLogo: prt4,
+    },
+  ];
+
   const logos = [prt1, prt2, prt3, prt4, prt5, prt6, prt7];
+
+  const projects = [
+    {
+      title: "FinConnect",
+      category: "Customer Relationship Management (CRM)",
+      image: project1,
+    },
+    {
+      title: "HealthSync",
+      category: "Health Tracking App for Patients and Doctors",
+      image: project2,
+    },
+    {
+      title: "Commerce360",
+      category: "Online Store, Multivendor Marketplace & E-commerce Apps",
+      image: project3,
+    },
+    {
+      title: "PrintWithAI",
+      category:
+        "Web-to-Print Software / Online Design Tool / Product Designer Tool",
+      image: project4,
+    },
+    {
+      title: "PM Insights",
+      category: "Project Management Tool (SaaS & Hosted)",
+      image: project5,
+    },
+    {
+      title: "Commerce360",
+      category: "Online Store, Multivendor Marketplace & E-commerce Apps",
+      image: project6,
+    },
+  ];
 
   const services = [
     {

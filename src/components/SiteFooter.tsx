@@ -125,7 +125,7 @@ export default function SiteFooter({
                 src="/header/sLogo.png"
                 alt={`${site.title} logo`}
                 fill
-                className="object-contain"
+                className="object-contain scale-200"
               />
             </div>
 

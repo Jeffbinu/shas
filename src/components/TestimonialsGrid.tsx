@@ -9,7 +9,8 @@ interface TestimonialItem {
   role: string;
   project: string;
   location: string;
-  companyLogo: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  companyLogo: any;
 }
 
 interface TestimonialsGridProps {
@@ -23,7 +24,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -31,10 +32,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative sm:py-12 overflow-hidden"
-    >
+    <section ref={sectionRef} className="relative sm:pt-12 overflow-hidden">
       <div className="relative mx-auto px-4 sm:px-8 lg:px-16">
         {/* HEADER */}
         <div
@@ -54,7 +52,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Our Happy Clients
           </h2>
         </div>
@@ -92,7 +90,7 @@ function TestimonialCard({
       className={`
         relative flex-shrink-0 w-[85vw] md:w-[45vw] lg:w-[30%]
         snap-center flex flex-col justify-between
-        rounded-[2rem] p-8 md:p-10
+        rounded-[2rem] p-6 md:p-8
         border border-white/5
         transition-all duration-500
         ${
@@ -113,13 +111,13 @@ function TestimonialCard({
 
       {/* TOP */}
       <div className="relative z-20">
-        <div className="text-[#22d3ee] text-6xl font-serif leading-none mb-6 opacity-80 font-black">
+        <div className="text-[#22d3ee] text-4xl font-serif leading-none mb-6 opacity-80 font-black">
           “
         </div>
 
         <p
           className={`
-            text-lg leading-relaxed font-medium mb-10 transition-colors duration-300
+            text-sm leading-relaxed font-medium mb-10 transition-colors duration-300
             ${isFirst ? "text-[#22d3ee]" : "text-white"}
           `}
         >
@@ -127,9 +125,7 @@ function TestimonialCard({
         </p>
 
         <div className="text-right mb-10">
-          <div className="text-white font-bold text-xl mb-1">
-            {item.author}
-          </div>
+          <div className="text-white font-bold text-xl mb-1">{item.author}</div>
           <div className="text-gray-400 text-sm font-medium">{item.role}</div>
         </div>
       </div>
@@ -151,7 +147,7 @@ function TestimonialCard({
             </div>
           </div>
 
-          <div className="relative h-8 w-28 opacity-90 grayscale hover:grayscale-0 transition-all duration-300">
+          <div className="relative h-8 w-20 brightness-0 invert transition-all duration-300">
             <Image
               src={item.companyLogo}
               alt="Company Logo"

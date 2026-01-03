@@ -25,7 +25,7 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -35,7 +35,7 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden py-12 sm:py-20"
+      className="relative overflow-hidden py-8 sm:py-12"
     >
       {/* Background Glow */}
       <div className="absolute top-[20%] right-[-10%] w-[40%] h-[30%] bg-[#D93068] rounded-full mix-blend-screen blur-[140px] opacity-30 pointer-events-none" />
@@ -54,7 +54,7 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
               Our Services
             </span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-syne font-bold text-white">
+          <h2 className="text-4xl sm:text-4xl lg:text-4xl font-syne font-bold text-white">
             What We Do
           </h2>
         </div>
@@ -77,7 +77,7 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
 
 function ServiceCard({ service }: { service: ServiceItem }) {
   return (
-    <div className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer h-[450px] lg:h-[35rem] shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 border border-white/5">
+    <div className="group relative rounded-[2.5rem] overflow-hidden cursor-pointer h-[450px] lg:h-[30rem] shadow-lg hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-700 border border-white/5">
       {/* 1. Base Gradient Background */}
       <div
         className="absolute inset-0 z-0 transition-transform duration-700"
@@ -114,14 +114,14 @@ function ServiceCard({ service }: { service: ServiceItem }) {
         <div className="relative flex flex-col justify-end">
           {/* TITLE: Collapses to 0 height, causing Subtitle to move UP */}
           <div className="overflow-hidden transition-all duration-500 ease-in-out max-h-[100px] opacity-100 group-hover:max-h-0 group-hover:opacity-0">
-            <h3 className="text-4xl md:text-5xl font-bold text-[#3b82f6] font-syne leading-tight mb-3">
+            <h3 className="text-2xl md:text-3xl font-bold text-[#3b82f6] font-syne leading-tight mb-3">
               {service.title}
             </h3>
           </div>
 
           {/* SUBTITLE: Moves Up naturally because Title collapsed */}
           <div className="transform transition-transform duration-500 ease-in-out">
-            <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-white font-syne leading-tight group-hover:scale-105 group-hover:origin-left transition-all duration-500">
+            <h3 className="text-xl md:text-xl lg:text-xl font-bold text-white font-syne leading-tight group-hover:scale-105 group-hover:origin-left transition-all duration-500">
               {service.subtitle}
             </h3>
           </div>

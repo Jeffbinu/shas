@@ -161,13 +161,13 @@ export default function Header({
             >
               <div
                 className={`transition-all duration-300 ${
-                  isScrolled ? "w-10 h-10" : "w-12 h-12 sm:w-14 sm:h-14"
+                  isScrolled ? "w-10 h-10" : "w-12 h-12 sm:w-14 sm:h-14 "
                 }`}
               >
                 <Image
                   src={logo}
                   alt={`${site.title} logo`}
-                  className="w-full h-full object-contain group-hover:rotate-12 group-hover:scale-110 transition-all"
+                  className="w-full h-full group-hover:rotate-12 group-hover:scale-110 transition-all scale-150 "
                 />
               </div>
 

@@ -19,7 +19,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
-      { threshold: 0.25 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
@@ -60,7 +60,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl  text-white font-syne font-bold">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold">
             How We Work
           </h2>
         </div>
@@ -133,7 +133,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
 
                 {/* Content */}
                 <div className="pb-12 w-full transition-transform duration-500 group-hover:translate-x-2">
-                  <h4 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                  <h4 className="text-xl md:text-2xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
                     {step.title}
                   </h4>
                   <p className="text-gray-400 text-base md:text-lg leading-relaxed group-hover:text-gray-200 transition-colors duration-300  w-[80%]">
