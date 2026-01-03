@@ -9,13 +9,7 @@ import HowWeWork from "@/components/HowWeWork";
 import ProjectsGrid from "@/components/ProjectsGrid";
 import TestimonialsGrid from "@/components/TestimonialsGrid";
 
-import {
-  getHero,
-  getServices,
-  getHow,
-  getProjects,
-  getTestimonials,
-} from "../lib/content";
+import { getHero, getHow } from "../lib/content";
 
 import prt1 from "../../public/partners/partner1.png";
 import prt2 from "../../public/partners/partner2.png";
@@ -37,6 +31,7 @@ import experience from "../../public/services/experience.png";
 import intellegence from "../../public/services/intellegence.png";
 import scalability from "../../public/services/scalability.png";
 import ContactSection from "@/components/ContactSection";
+import analytics from "../../public/services/analytics.png";
 
 export default function HomePage() {
   const hero = getHero();
@@ -117,6 +112,7 @@ export default function HomePage() {
     },
   ];
 
+
   const services = [
     {
       title: "Experience",
@@ -146,13 +142,13 @@ export default function HomePage() {
       bgGradient: "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)",
     },
     {
-      title: "Scalability",
-      subtitle: "Cloud Solutions",
-      desc: "Scalable infrastructure for growth",
+      title: "Analytics",
+      subtitle: "Business Intelligence & Data",
+      desc: "Visualizing success through data",
       expandedDesc:
-        "We design secure, scalable, and high-performance cloud infrastructures tailored to your needs. Whether migrating, optimizing, or building cloud-native products—we ensure reliability, speed, and effortless growth.",
-      icon: scalability,
-      bgGradient: "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)",
+        "We transform complex datasets into clear, interactive dashboards and actionable reports. By leveraging modern BI tools, we help you uncover hidden patterns, optimize operations, and make confident, data-driven strategic decisions.",
+      icon: analytics,
+      bgGradient: "linear-gradient(135deg, #0d1a35 0%, #0f1e3f 100%)",
     },
   ];
 
