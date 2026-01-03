@@ -3,7 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
-/* ---------- ICONS ---------- */
+// Imported Icons
+import facebookIcon from "../../public/footer/facebook.png";
+import linkedinIcon from "../../public/footer/linkedin.png";
+import instagramIcon from "../../public/footer/instagram.png";
+import youtubeIcon from "../../public/footer/youtube.png";
+
+/* ---------- UTILITY ICONS (Phone & Mail) ---------- */
 const PhoneIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -33,57 +39,6 @@ const MailIcon = () => (
   </svg>
 );
 
-const FacebookIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    fill="currentColor"
-  >
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-  </svg>
-);
-
-const LinkedInIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    fill="currentColor"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-  </svg>
-);
-
-const YoutubeIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
-    fill="currentColor"
-  >
-    <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
-    <path d="m10 15 5-3-5-3z" />
-  </svg>
-);
-
 /* ---------- FOOTER ---------- */
 export default function SiteFooter({
   site,
@@ -105,6 +60,30 @@ export default function SiteFooter({
     return () => observer.disconnect();
   }, []);
 
+  // Social Media Configuration
+  const socialLinks = [
+    {
+      name: "Facebook",
+      icon: facebookIcon,
+      href: "#", // Placeholder
+    },
+    {
+      name: "LinkedIn",
+      icon: linkedinIcon,
+      href: "https://www.linkedin.com/in/sri-c-70019435b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app", // Placeholder
+    },
+    {
+      name: "Instagram",
+      icon: instagramIcon,
+      href: "https://www.instagram.com/shashonk_pvt_ltd?igsh=MTI2cXJwNWt6OXhkdA%3D%3D&utm_source=qr",
+    },
+    {
+      name: "YouTube",
+      icon: youtubeIcon,
+      href: "#", // Placeholder
+    },
+  ];
+
   return (
     <footer
       ref={footerRef}
@@ -119,24 +98,16 @@ export default function SiteFooter({
       >
         <div className="flex flex-col gap-10">
           {/* LOGO */}
-          <div className="flex items-center gap-3">
-            <div className="relative w-10 h-10">
+          <div className="flex ">
+            <div className="relative h-28 w-[20%]">
               <Image
-                src="/header/sLogo.png"
+                src="/header/logo.svg"
                 alt={`${site.title} logo`}
                 fill
-                className="object-contain scale-200"
+                className="object-contain"
               />
             </div>
 
-            <div className="flex flex-col">
-              <span className="text-2xl font-bold text-[#00aaff] tracking-wide leading-none">
-                {site.title.toUpperCase()}
-              </span>
-              <span className="text-[10px] text-gray-500 uppercase tracking-widest font-medium">
-                Intellectual wisdom in technology
-              </span>
-            </div>
           </div>
 
           {/* DESCRIPTION */}
@@ -168,18 +139,24 @@ export default function SiteFooter({
           </div>
 
           {/* SOCIALS */}
-          <div className="flex gap-4 pt-2">
-            {[FacebookIcon, LinkedInIcon, InstagramIcon, YoutubeIcon].map(
-              (Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full bg-[#007aff] text-white flex items-center justify-center hover:bg-[#0062cc] hover:scale-110 transition-all duration-300 shadow-lg shadow-blue-500/20"
-                >
-                  <Icon />
-                </a>
-              )
-            )}
+          <div className="flex gap-6 pt-2">
+            {socialLinks.map((social, i) => (
+              <a
+                key={i}
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative w-8 h-8 flex items-center justify-center hover:scale-110 transition-transform duration-300"
+              >
+                <Image
+                  src={social.icon}
+                  alt={social.name}
+                  className="object-contain"
+                  fill 
+                  sizes="20px"
+                />
+              </a>
+            ))}
           </div>
         </div>
       </div>

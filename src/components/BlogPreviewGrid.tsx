@@ -42,7 +42,7 @@ export default function BlogPreviewGrid() {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne">
+          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne uppercase">
             Blog
           </h2>
         </div>

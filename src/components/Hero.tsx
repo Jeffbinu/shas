@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
-import WomenImage from "../../public/hero/women.png";
+import WomenImage from "../../public/hero/hero_main.svg";
 
 type CTA = { href: string; label: string };
 
@@ -172,53 +172,6 @@ export default function Hero({
             />
           </div>
 
-          {/* HAPPY CUSTOMER */}
-          <div
-            className="hidden lg:block absolute right-[-4%] top-[48%] bg-white py-4 px-3 rounded-2xl rotate-12 z-30"
-            style={{
-              boxShadow:
-                "0px 30px 52px 0px #4541713D, 0px 0px 0px 4px #FFFFFF3D",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-xl">
-                🍄
-              </div>
-              <div>
-                <div className="font-bold text-gray-800">Happy Customer</div>
-                <div className="text-gray-400 text-sm">4.8/5 Rating</div>
-              </div>
-            </div>
-          </div>
-
-          {/* ALL DESIGNERS */}
-          <div
-            className="hidden lg:block absolute right-[22%] bottom-[10%] bg-white p-5 rounded-2xl -rotate-12 z-30 w-[220px]"
-            style={{
-              boxShadow:
-                "0px 30px 52px 0px #4541713D, 0px 0px 0px 4px #FFFFFF3D",
-              backdropFilter: "blur(10px)",
-            }}
-          >
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-bold text-gray-800">All Designers</span>
-              <span className="text-xl">🎨</span>
-            </div>
-            <div className="w-full bg-gray-100 h-2 rounded-full overflow-hidden mb-2">
-              <div
-                className="h-full"
-                style={{
-                  width: "62%",
-                  background: "linear-gradient(90deg,#FF1CF7 0%,#00F0FF 100%)",
-                }}
-              />
-            </div>
-            <div className="flex justify-between text-sm text-gray-500">
-              <span>62%</span>
-              <span>2M</span>
-            </div>
-          </div>
         </div>
       </div>
     </section>

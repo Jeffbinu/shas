@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import logo from "../../public/header/shLogo.png";
+import logo from "../../public/header/logo.svg";
 
 type NavItem = { label: string; href: string };
 
@@ -134,7 +134,7 @@ export default function Header({
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out 
         ${
           isVisible
             ? "translate-y-0 opacity-100"
@@ -153,39 +153,23 @@ export default function Header({
               isScrolled ? "h-20" : "h-24"
             }`}
           >
-            {/* LOGO */}
+            {/* LOGO ONLY */}
             <Link
-              href="/#home"
-              onClick={(e) => handleNavClick(e, "#home")}
-              className="flex items-center gap-3 group"
+              href="/#"
+              onClick={(e) => handleNavClick(e, "/#")}
+              className="flex items-center group select-none"
             >
               <div
-                className={`transition-all duration-300 ${
-                  isScrolled ? "w-10 h-10" : "w-12 h-12 sm:w-14 sm:h-14 "
+                className={`relative transition-all duration-300 w-auto pe-4 ${
+                  isScrolled ? "h-10" : "h-16 sm:h-16"
                 }`}
               >
                 <Image
                   src={logo}
                   alt={`${site.title} logo`}
-                  className="w-full h-full group-hover:rotate-12 group-hover:scale-110 transition-all scale-150 "
+                  className="w-auto h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  priority
                 />
-              </div>
-
-              <div className="flex flex-col">
-                <span
-                  className={`font-bold text-white uppercase transition-all ${
-                    isScrolled ? "text-lg" : "text-xl"
-                  }`}
-                >
-                  {site.title}
-                </span>
-                <span
-                  className={`text-white/70 uppercase tracking-widest transition-all ${
-                    isScrolled ? "opacity-0 h-0" : "opacity-100 text-[10px]"
-                  }`}
-                >
-                  Intellectual wisdom in technology
-                </span>
               </div>
             </Link>
 
@@ -196,7 +180,7 @@ export default function Header({
                   key={n.href}
                   href={n.href.startsWith("#") ? `/${n.href}` : n.href}
                   onClick={(e) => handleNavClick(e, n.href)}
-                  className="text-white/90 hover:text-[#007aff] relative group transition-colors"
+                  className="text-white/90 hover:text-[#007aff] relative group transition-colors font-poppins"
                 >
                   {n.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#007aff] to-[#00f0ff] transition-all group-hover:w-full" />

@@ -130,7 +130,7 @@ export default function ContactSection() {
       ref={sectionRef}
       className="relative overflow-hidden"
     >
-      <ChatBot />
+      {/* <ChatBot /> */}
 
       <div className="container mx-auto px-6 lg:px-8">
         {/* Header */}
@@ -176,7 +176,7 @@ export default function ContactSection() {
                   <h4 className="text-white font-bold mb-1 group-hover:text-blue-400 transition-colors">
                     Call Us
                   </h4>
-                  <p className="text-gray-400 text-sm">+91 6380779941</p>
+                  <p className="text-gray-400 text-sm">+91 9363222560</p>
                 </div>
                 <div className="group bg-[#1e293b]/50 p-6 rounded-2xl border border-white/5 hover:border-blue-500/30 hover:bg-[#1e293b] transition-all duration-300">
                   <h4 className="text-white font-bold mb-1 group-hover:text-blue-400 transition-colors">

@@ -118,7 +118,7 @@ function TestimonialCard({
         <p
           className={`
             text-sm leading-relaxed font-medium mb-10 transition-colors duration-300
-            ${isFirst ? "text-[#22d3ee]" : "text-white"}
+            text-white
           `}
         >
           {item.quote}

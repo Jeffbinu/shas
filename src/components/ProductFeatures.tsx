@@ -1,6 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import inovative from "../../public/product/inovative.png";
+import analytics from "../../public/product/analytics.png";
+import excellence from "../../public/product/excellence.png";
 
 export default function ProductFeatures() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,10 +23,7 @@ export default function ProductFeatures() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative sm:py-12 overflow-hidden"
-    >
+    <section ref={sectionRef} className="relative sm:py-12 overflow-hidden">
       <div className="relative mx-auto px-4 sm:px-8 lg:px-16">
         {/* HEADER */}
         <div
@@ -42,22 +43,22 @@ export default function ProductFeatures() {
         </div>
 
         {/* CONTENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_40%] gap-12 lg:gap-20 items-center">
-          {/* LEFT CONTENT */}
+        <div className="grid grid-cols-1 gap-12 lg:gap-20 items-center">
+          {/* MAIN CONTENT */}
           <div
             className={`
-              order-2 lg:order-1 transition-all duration-700 ease-out
+              order-2 lg:order-1 transition-all duration-1000 ease-out delay-100
               ${
                 inView
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 -translate-x-12"
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-12" // Changed to vertical fade-up
               }
             `}
           >
-            <h3 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight mb-8">
-              <span className="text-[#3b82f6]">Future-Ready Solutions,</span>
-              <br />
-              <span className="text-[#3b82f6]">Built To Perform</span>
+            <h3 className="text-3xl sm:text-4xl lg:text-4xl font-bold leading-tight mb-8 text-center lg:text-left">
+              <span className="text-[#3b82f6]">Future-Ready Solutions, </span>
+              <br className=" lg:hidden" />
+              <span className="text-[#3b82f6]"> Built To Perform</span>
             </h3>
 
             <div className="text-gray-300/90 text-base sm:text-lg leading-relaxed mb-12 text-justify lg:text-left">
@@ -74,13 +75,16 @@ export default function ProductFeatures() {
             </div>
 
             {/* FEATURES ROW */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-8 border-t border-white/10 pt-8 mt-8">
+            <div className="grid grid-cols-3 gap-4 sm:gap-8  pt-8 mt-8">
               {/* Feature 1 */}
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
-                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
-                    ☁️
-                  </span>
+              <div className="flex flex-col items-center text-center group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center relative">
+                  <Image
+                    src={inovative}
+                    alt="Innovative Interface Design"
+                    fill
+                    className="object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
                 <span className="text-sm font-medium text-white leading-tight">
                   Innovative
@@ -90,11 +94,14 @@ export default function ProductFeatures() {
               </div>
 
               {/* Feature 2 */}
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
-                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
-                    🟣
-                  </span>
+              <div className="flex flex-col items-center text-center group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center relative">
+                  <Image
+                    src={analytics}
+                    alt="Advanced Analytics"
+                    fill
+                    className="object-contain drop-shadow-[0_0_15px_rgba(168,85,247,0.5)] group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
                 <span className="text-sm font-medium text-white leading-tight">
                   Advanced
@@ -104,11 +111,14 @@ export default function ProductFeatures() {
               </div>
 
               {/* Feature 3 */}
-              <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
-                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(251,146,60,0.5)]">
-                    🟠
-                  </span>
+              <div className="flex flex-col items-center text-center group">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center relative">
+                  <Image
+                    src={excellence}
+                    alt="Tailored Support Excellence"
+                    fill
+                    className="object-contain drop-shadow-[0_0_15px_rgba(251,146,60,0.5)] group-hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
                 <span className="text-sm font-medium text-white leading-tight">
                   Tailored Support
@@ -116,23 +126,6 @@ export default function ProductFeatures() {
                   Excellence
                 </span>
               </div>
-            </div>
-          </div>
-
-          {/* RIGHT CARD */}
-          <div
-            className={`
-              order-1 lg:order-2 flex justify-center lg:justify-end
-              transition-all duration-700 ease-out
-              ${
-                inView
-                  ? "opacity-100 translate-x-0"
-                  : "opacity-0 translate-x-12"
-              }
-            `}
-          >
-            <div className="w-full max-w-md lg:max-w-full aspect-[4/5] bg-[#020617] border border-white/5 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
-              {/* Placeholder intentionally left clean */}
             </div>
           </div>
         </div>

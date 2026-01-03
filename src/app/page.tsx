@@ -143,7 +143,7 @@ export default function HomePage() {
       expandedDesc:
         "We design secure, scalable, and high-performance cloud infrastructures tailored to your needs. Whether migrating, optimizing, or building cloud-native products—we ensure reliability, speed, and effortless growth.",
       icon: scalability,
-      bgGradient: "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)",
+      bgGradient: "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)",
     },
     {
       title: "Scalability",
@@ -152,7 +152,7 @@ export default function HomePage() {
       expandedDesc:
         "We design secure, scalable, and high-performance cloud infrastructures tailored to your needs. Whether migrating, optimizing, or building cloud-native products—we ensure reliability, speed, and effortless growth.",
       icon: scalability,
-      bgGradient: "linear-gradient(135deg, #1a0d2e 0%, #2d1547 100%)",
+      bgGradient: "linear-gradient(135deg, #0a1830 0%, #0d1f3d 100%)",
     },
   ];
 
