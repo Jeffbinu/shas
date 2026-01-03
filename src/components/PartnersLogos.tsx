@@ -46,7 +46,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
           </div>
         </div>
 
-        <div className="w-full border-t border-dashed border-white/10 mb-10" />
+        <div className="w-full border-t border-dashed border-white/5 mb-10" />
 
         {/* Logos */}
         <div className="relative w-full overflow-hidden">
@@ -67,7 +67,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
           </div>
         </div>
 
-        <div className="w-full border-t border-dashed border-white/10 mt-10" />
+        <div className="w-full border-t border-dashed border-white/5 mt-10" />
       </div>
     </section>
   );

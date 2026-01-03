@@ -161,7 +161,7 @@ export default function Header({
             >
               <div
                 className={`relative transition-all duration-300 w-auto pe-4 ${
-                  isScrolled ? "h-10" : "h-16 sm:h-16"
+                  isScrolled ? "h-10" : "h-16 sm:h-17"
                 }`}
               >
                 <Image

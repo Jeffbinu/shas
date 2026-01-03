@@ -143,7 +143,7 @@ export default function Hero({
               </a>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 border-t border-white/10 pt-8 lg:w-[60%] mx-auto lg:mx-0">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-6  pt-8 lg:w-[60%] mx-auto lg:mx-0">
               {statsData.map((stat, i) => (
                 <div key={i}>
                   <div className="text-[#60a5fa] font-bold text-[clamp(1.4rem,3vw,2rem)]">
