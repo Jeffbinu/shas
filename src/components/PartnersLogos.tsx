@@ -1,56 +1,74 @@
 "use client";
+
 import Image, { StaticImageData } from "next/image";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
   const sliderLogos = [...logos, ...logos];
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.25,
+      }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className="relative overflow-visible py-16 lg:px-8 bg-transparent">
-
-      {/* Main Content */}
-      <div className="relative z-10 mx-auto px-6">
-        {/* Quote Section */}
-        <div className="text-center mb-16 md:mb-20">
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight mb-4">
+    <section
+      ref={sectionRef}
+      className="relative w-full py-20 sm:py-12 overflow-hidden"
+    >
+      <div
+        className={`
+          relative z-10 px-4 sm:px-8 lg:px-16
+          transition-all duration-700 ease-out
+          ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+        `}
+      >
+        {/* Quote */}
+        <div className="text-center mb-16">
+          <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight mb-4">
             <span className="text-[#22d3ee]">
               “Technology is best when it brings people together.”
             </span>
           </blockquote>
-          <div className="text-white text-lg md:text-xl font-bold tracking-wide">
+          <div className="text-white/80 text-base sm:text-lg font-medium">
             – Matt Mullenweg
           </div>
         </div>
 
-        {/* Top dashed line */}
-        <div className="w-full border-t border-dashed border-white/10 mb-10"></div>
+        <div className="w-full border-t border-dashed border-white/10 mb-10" />
 
-        {/* Logos Slider */}
-        <div className="relative w-full group overflow-hidden">
+        {/* Logos */}
+        <div className="relative w-full overflow-hidden">
           <div className="flex w-max animate-scroll">
             {sliderLogos.map((src, index) => (
               <div
-                key={`logo-${index}`}
-                className="flex items-center justify-center mx-8 md:mx-12"
+                key={index}
+                className="mx-8 sm:mx-12 flex items-center justify-center"
               >
-                <div className="relative h-8 md:h-10 w-auto cursor-pointer transition-transform duration-300 ease-out hover:scale-110">
-                  <div className="relative h-full w-auto opacity-90 hover:opacity-100 transition-opacity duration-300">
-                    <Image
-                      src={src}
-                      alt={`partner-logo-${index}`}
-                      className="h-full w-auto object-contain brightness-0 invert"
-                      draggable={false}
-                    />
-                  </div>
-                </div>
+                <Image
+                  src={src}
+                  alt={`partner-${index}`}
+                  draggable={false}
+                  className="h-8 sm:h-10 w-auto object-contain brightness-0 invert opacity-80 hover:opacity-100 transition"
+                />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Bottom dashed line */}
-        <div className="w-full border-t border-dashed border-white/10 mt-10"></div>
+        <div className="w-full border-t border-dashed border-white/10 mt-10" />
       </div>
-    </div>
+    </section>
   );
 }

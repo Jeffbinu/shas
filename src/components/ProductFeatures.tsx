@@ -1,31 +1,66 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 
 export default function ProductFeatures() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      { threshold: 0.25 }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative py-16  lg:px-8  overflow-hidden">
-      <div className="relative  mx-auto px-6 lg:px-8">
-        {/* Centered Top Header */}
-        <div className="relative text-center mb-16 md:mb-20">
-          <div className="absolute h-[200px] top-0 left-0 w-full  pointer-events-none z-0 flex justify-center items-center">
+    <section
+      ref={sectionRef}
+      className="relative sm:py-12 overflow-hidden"
+    >
+      <div className="relative mx-auto px-4 sm:px-8 lg:px-16">
+        {/* HEADER */}
+        <div
+          className={`
+            relative text-center mb-20 transition-all duration-700 ease-out
+            ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+          `}
+        >
+          <div className="absolute h-[200px] top-0 left-0 w-full pointer-events-none flex justify-center items-center">
             <div className="w-[30%] h-full bg-[#044d9b] rounded-full mix-blend-screen blur-[120px] opacity-40" />
-            <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40 " />
+            <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+
+          <h2 className="relative z-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight font-syne">
             Product Features
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[55%_40%]  gap-12 lg:gap-20 items-center">
-          {/* Left Column: Text Content */}
-          <div className="order-2 lg:order-1">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-8">
+        {/* CONTENT GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_40%] gap-12 lg:gap-20 items-center">
+          {/* LEFT CONTENT */}
+          <div
+            className={`
+              order-2 lg:order-1 transition-all duration-700 ease-out
+              ${
+                inView
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-12"
+              }
+            `}
+          >
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-8">
               <span className="text-[#3b82f6]">Future-Ready Solutions,</span>
               <br />
               <span className="text-[#3b82f6]">Built To Perform</span>
             </h3>
 
-            <div className="prose prose-lg prose-invert text-gray-300/90 leading-relaxed mb-12 max-w-none text-justify lg:text-left">
+            <div className="text-gray-300/90 text-base sm:text-lg leading-relaxed mb-12 text-justify lg:text-left">
               <p>
                 At SHASHONK, we create solutions designed for performance,
                 intelligence, and long-term growth. Our products are built on
@@ -33,18 +68,17 @@ export default function ProductFeatures() {
                 user experiences. With integrated analytics and BI capabilities,
                 businesses can make confident, data-driven decisions. Security
                 is embedded at every layer, ensuring reliable and protected
-                environments. Our digital products don&lsquo;t just work
-                today—they continue to deliver value as your business evolves.
+                environments. Our digital products don’t just work today—they
+                continue to deliver value as your business evolves.
               </p>
             </div>
 
-            {/* Feature Icons Row */}
-            <div className="grid grid-cols-3 gap-4 md:gap-8 border-t border-white/10 pt-8 mt-8">
+            {/* FEATURES ROW */}
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 border-t border-white/10 pt-8 mt-8">
               {/* Feature 1 */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 mb-4 flex items-center justify-center relative">
-                  {/* Replace with actual 3D cloud icon image if available. Using emoji/placeholder for now */}
-                  <span className="text-3xl md:text-4xl drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
+                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">
                     ☁️
                   </span>
                 </div>
@@ -57,8 +91,8 @@ export default function ProductFeatures() {
 
               {/* Feature 2 */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 mb-4 flex items-center justify-center relative">
-                  <span className="text-3xl md:text-4xl drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
+                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(168,85,247,0.5)]">
                     🟣
                   </span>
                 </div>
@@ -71,8 +105,8 @@ export default function ProductFeatures() {
 
               {/* Feature 3 */}
               <div className="flex flex-col items-center text-center">
-                <div className="w-12 h-12 md:w-16 md:h-16 mb-4 flex items-center justify-center relative">
-                  <span className="text-3xl md:text-4xl drop-shadow-[0_0_15px_rgba(251,146,60,0.5)]">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 mb-4 flex items-center justify-center">
+                  <span className="text-3xl sm:text-4xl drop-shadow-[0_0_15px_rgba(251,146,60,0.5)]">
                     🟠
                   </span>
                 </div>
@@ -85,9 +119,21 @@ export default function ProductFeatures() {
             </div>
           </div>
 
-          {/* Right Column: Dark Card Placeholder */}
-          <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="w-full max-w-md lg:max-w-full aspect-[4/5] inset-0 bg-[#020617] border border-white/5 rounded-[2.5rem] shadow-2xl relative overflow-hidden group"></div>
+          {/* RIGHT CARD */}
+          <div
+            className={`
+              order-1 lg:order-2 flex justify-center lg:justify-end
+              transition-all duration-700 ease-out
+              ${
+                inView
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 translate-x-12"
+              }
+            `}
+          >
+            <div className="w-full max-w-md lg:max-w-full aspect-[4/5] bg-[#020617] border border-white/5 rounded-[2.5rem] shadow-2xl relative overflow-hidden group">
+              {/* Placeholder intentionally left clean */}
+            </div>
           </div>
         </div>
       </div>

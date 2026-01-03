@@ -1,42 +1,71 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useRef, useState } from "react";
 
 interface OurStoryProps {
   videoSrc: string;
 }
 
 export default function OurStory({ videoSrc }: OurStoryProps) {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setInView(entry.isIntersecting);
+      },
+      {
+        threshold: 0.05,
+      }
+    );
+
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative overflow-visible bg-transparent py-16  lg:px-8">
+    <section
+      ref={sectionRef}
+      className="relative w-full py-24 sm:py-8 overflow-hidden"
+    >
       <style>{`
-        @keyframes shimmer-move {
-          0% { background-position: 300% center; }  
-          100% { background-position: -300% center; }
+        @keyframes shimmer {
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
         }
       `}</style>
 
-      <div className="relative mx-auto px-6">
-        {/* Top Header */}
-        <div className="text-center mb-16 md:mb-20 relative">
+      <div
+        className={`
+          relative z-10 px-4 sm:px-8 lg:px-16
+          transition-all duration-700 ease-out
+          ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+        `}
+      >
+        {/* Header */}
+        <div className="text-center mb-20">
           <div className="inline-block px-6 py-1.5 mb-6 bg-white rounded-full">
-            <span className="text-[#0a1525] text-sm font-bold tracking-wide uppercase">
+            <span className="text-[#0a1525] text-xs uppercase font-poppins font-bold ">
               About us
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight">
+
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl  text-white font-syne font-bold ">
             Our Story
           </h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-[40%_55%] gap-12 lg:gap-20 mb-20">
-          <div className="absolute bottom-[20%] left-[10%] w-[40%] h-[30%] bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-20" />
 
-          <div className="flex flex-col justify-start pt-4">
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-400 mb-2 leading-tight">
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-[40%_55%] gap-12 lg:gap-20 mb-24">
+          {/* Left */}
+          <div className="space-y-4">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-light text-gray-400">
               Idea to impact
             </h3>
 
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="inline-block text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_100%] animate-[shimmer-move_8s_linear_infinite] pb-2">
+            <h3 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+              <span className="text-transparent bg-clip-text bg-[linear-gradient(110deg,#08183B_45%,#ffffff_50%,#08183B_55%)] bg-[length:250%_100%] animate-[shimmer_8s_linear_infinite]">
                 The spark
                 <br />
                 that started
@@ -46,74 +75,53 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
             </h3>
           </div>
 
-          {/* Right: Story Paragraphs (60%) */}
-          <div className="space-y-6 text-gray-300 text-base md:text-lg leading-relaxed font-light">
+          {/* Right */}
+          <div className="space-y-6 text-gray-300 text-base sm:text-lg leading-relaxed">
             <p className="text-white font-medium">Hey there,</p>
 
             <p>
               SHASHONK started with a simple idea: what if building digital
-              products didn&apos;t have to feel complicated? What if
-              businesses—big or small—had a team they could rely on to turn
-              their ideas into something smart, clean, and genuinely impactful?
+              products didn’t have to feel complicated?
             </p>
 
             <p>
-              We&apos;re not here just to deliver projects—we&apos;re here to
-              understand your goals, challenge the usual, and build digital
-              experiences that actually make a difference. Whether it&apos;s
-              crafting a slick website, building intelligent AI solutions, or
-              shaping a brand from scratch, we bring energy, curiosity, and a
-              &quot;let&apos;s make it happen&quot; attitude to every project.
+              We’re here to understand your goals, challenge the usual, and
+              build digital experiences that actually make a difference.
             </p>
 
-            <p>
-              And while our tools and technology keep evolving, one thing
-              hasn&apos;t changed:
-              <br />
-              <span className="text-white font-semibold block mt-2">
-                we&apos;re still here to help ideas grow into something
-                unforgettable.
-              </span>
+            <p className="text-white font-semibold">
+              We’re still here to help ideas grow into something unforgettable.
             </p>
           </div>
         </div>
 
-        {/* Bottom Section: Full Width Banner Card */}
-        <div className="relative w-full  rounded-[2.5rem]  overflow-hidden  flex flex-col md:flex-row h-[500px]">
-          {/* Left: Video Side (50%) */}
-
-          <div className="w-full  md:w-1/2 relative h-1/2 md:h-full">
-            {videoSrc ? (
-              <video
-                className="w-full h-full object-cover"
-                autoPlay
-                loop
-                muted
-                playsInline
-              >
-                <source src={videoSrc} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-gray-900 text-white/20">
-                Video Placeholder
-              </div>
-            )}
+        {/* Bottom Banner */}
+        <div className="relative w-full rounded-[2.5rem] overflow-hidden flex flex-col md:flex-row min-h-[420px]">
+          {/* Video */}
+          <div className="w-full md:w-1/2 h-[240px] md:h-auto">
+            <video
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            >
+              <source src={videoSrc} type="video/mp4" />
+            </video>
           </div>
 
-          {/* Right: Blue Content Side (50%) */}
-          <div className="w-full md:w-1/2 bg-[#007aff] p-8 md:p-12 lg:p-16 flex flex-col justify-center h-1/2 md:h-full text-white">
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-4">
+          {/* Content */}
+          <div className="w-full md:w-1/2 bg-[#007aff] p-10 sm:p-14 flex flex-col justify-center text-white">
+            <h3 className="text-3xl sm:text-4xl lg:text-5xl mb-4 font-syne font-bold ">
               Turning Vision
               <br />
               Into Something
               <br />
               Real
             </h3>
-            <p className="text-white/90 text-sm md:text-base font-medium">
-              We believe great things happen when creativity
-              <br className="hidden md:block" />
-              meets technology
+
+            <p className="text-white/90 text-sm sm:text-base font-poppins leading-relaxed">
+              We believe great things happen when creativity meets technology.
             </p>
           </div>
         </div>

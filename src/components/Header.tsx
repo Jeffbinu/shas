@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -9,209 +10,219 @@ type NavItem = { label: string; href: string };
 
 export default function Header({
   site,
-}: Readonly<{ site: { title: string; nav: NavItem[] } }>) {
+}: {
+  site: { title: string; nav: NavItem[] };
+}) {
   const [open, setOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
-  
-  const pathname = usePathname();
-  const router = useRouter();
+  const lastScrollY = useRef(0);
   const isAutoScrolling = useRef(false);
 
-  // 1. PROFESSIONAL FIX: Reset Header on Page Navigation
-  // Whenever the user changes pages, check if we are at the top.
-  // If we are at the top, the header MUST be visible.
+  const pathname = usePathname();
+  const router = useRouter();
+
+  /* -------------------------------
+     ROUTE CHANGE SAFETY RESET
+  -------------------------------- */
   useEffect(() => {
-    const handleRouteChange = () => {
+    const timeout = setTimeout(() => {
       if (window.scrollY < 50) {
         setIsVisible(true);
         setIsScrolled(false);
       }
-      isAutoScrolling.current = false; // Release any scroll locks
-    };
+      isAutoScrolling.current = false;
+    }, 100);
 
-    // Small delay to allow Next.js to finish its native scroll restoration
-    const timer = setTimeout(handleRouteChange, 100);
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timeout);
   }, [pathname]);
 
+  /* -------------------------------
+     SCROLL SHOW / HIDE LOGIC
+  -------------------------------- */
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      // If programmatically scrolling, ignore user scroll events
+    const onScroll = () => {
       if (isAutoScrolling.current) return;
 
-      if (currentScrollY < 10) {
+      const currentY = window.scrollY;
+
+      if (currentY < 10) {
+        setIsVisible(true);
         setIsScrolled(false);
-        setIsVisible(true); // ALWAYS show at top
       } else {
         setIsScrolled(true);
-        // Smart Hide Logic
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsVisible(false);
-        } else if (currentScrollY < lastScrollY) {
-          setIsVisible(true);
+
+        if (currentY > lastScrollY.current && currentY > 120) {
+          setIsVisible(false); // scrolling down
+        } else {
+          setIsVisible(true); // scrolling up
         }
       }
-      
-      setLastScrollY(currentScrollY);
+
+      lastScrollY.current = currentY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  const handleNavigation = async (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  /* -------------------------------
+     HASH NAVIGATION (PROFESSIONAL)
+  -------------------------------- */
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     e.preventDefault();
     setOpen(false);
+    setIsVisible(true); // DO NOT hide immediately
 
-    // Only hide header if we are scrolling DOWN to a section.
-    // If scrolling to top (#home), keep it visible or let the animation handle it.
-    if (href !== "#home" && href !== "/") {
-      setIsVisible(false);
-    }
-    
-    if (href.startsWith("#")) {
-      const targetId = href.replace("#", "");
-      if (pathname === "/") {
-        scrollToSection(targetId);
-      } else {
-        isAutoScrolling.current = true;
-        router.push(`/${href}`);
-      }
-    } else {
+    // External route
+    if (!href.startsWith("#")) {
       router.push(href);
+      return;
+    }
+
+    // Same-page hash
+    if (pathname === "/") {
+      smoothScrollTo(href.substring(1));
+      history.pushState(null, "", href);
+    } else {
+      isAutoScrolling.current = true;
+      router.push(`/${href}`);
     }
   };
 
-  const scrollToSection = (targetId: string) => {
-    document.documentElement.style.scrollBehavior = "auto";
+  /* -------------------------------
+     SMOOTH SCROLL ENGINE
+  -------------------------------- */
+  const smoothScrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
     isAutoScrolling.current = true;
 
-    const targetElement = document.getElementById(targetId);
-    
-    if (targetElement) {
-      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition;
-      const duration = 800; 
-      let start: number | null = null;
+    const start = window.scrollY;
+    const target = el.getBoundingClientRect().top + start;
+    const distance = target - start;
+    const duration = 800;
+    let startTime: number | null = null;
 
-      const animation = (currentTime: number) => {
-        if (start === null) start = currentTime;
-        const timeElapsed = currentTime - start;
-        const progress = Math.min(timeElapsed / duration, 1);
-        const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-        
-        window.scrollTo(0, startPosition + distance * ease);
+    const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        } else {
-          isAutoScrolling.current = false;
-          document.documentElement.style.scrollBehavior = "smooth";
-          
-          window.scrollTo(0, targetPosition);
-          
-          // 2. SAFETY CHECK: If we scrolled to Top/Home, FORCE SHOW the header
-          if (targetId === "home" || targetPosition < 50) {
-            setIsVisible(true);
-            setIsScrolled(false);
-          }
-        }
-      };
-      requestAnimationFrame(animation);
-    } else {
-      isAutoScrolling.current = false;
-    }
+    const animate = (time: number) => {
+      if (!startTime) startTime = time;
+      const progress = Math.min((time - startTime) / duration, 1);
+      window.scrollTo(0, start + distance * easeOutExpo(progress));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        isAutoScrolling.current = false;
+      }
+    };
+
+    requestAnimationFrame(animate);
   };
 
   return (
     <>
-      {/* Sensor Strip */}
-      <div 
+      {/* TOP SENSOR STRIP */}
+      <div
         className="fixed top-0 left-0 right-0 h-4 z-[60]"
         onMouseEnter={() => setIsVisible(true)}
       />
 
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out transform ${
-          isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-        } ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ease-out
+        ${
+          isVisible
+            ? "translate-y-0 opacity-100"
+            : "-translate-y-full opacity-0"
+        }
+        ${
           isScrolled
-            ? "bg-[#030C20]/90 backdrop-blur-xl shadow-2xl shadow-[#007aff]/10"
+            ? "bg-[#030C20]/10 backdrop-blur-xl shadow-2xl shadow-[#007aff]/10"
             : "bg-transparent"
         }`}
         onMouseEnter={() => setIsVisible(true)}
       >
         <div className="mx-auto px-6 lg:px-12">
-          <div className={`relative flex items-center justify-between transition-all duration-300 ${
-            isScrolled ? "h-20" : "h-24"
-          }`}>
-            <Link 
-              href="/" 
-              onClick={(e) => handleNavigation(e, "#home")}
+          <div
+            className={`flex items-center justify-between transition-all duration-300 ${
+              isScrolled ? "h-20" : "h-24"
+            }`}
+          >
+            {/* LOGO */}
+            <Link
+              href="/#home"
+              onClick={(e) => handleNavClick(e, "#home")}
               className="flex items-center gap-3 group"
             >
-              <div className={`relative transition-all duration-300 ease-out ${
-                isScrolled ? "h-10 w-10" : "h-12 w-12 sm:h-16 sm:w-12"
-              }`}>
+              <div
+                className={`transition-all duration-300 ${
+                  isScrolled ? "w-10 h-10" : "w-12 h-12 sm:w-14 sm:h-14"
+                }`}
+              >
                 <Image
                   src={logo}
                   alt={`${site.title} logo`}
-                  className="h-full w-full object-contain group-hover:rotate-12 group-hover:scale-110 transition-all duration-300 ease-out"
-                  height={100}
-                  width={100}
+                  className="w-full h-full object-contain group-hover:rotate-12 group-hover:scale-110 transition-all"
                 />
               </div>
+
               <div className="flex flex-col">
-                <span className={`font-bold tracking-wide text-white uppercase leading-none transition-all duration-300 ${
-                  isScrolled ? "text-lg" : "text-xl"
-                }`}>
+                <span
+                  className={`font-bold text-white uppercase transition-all ${
+                    isScrolled ? "text-lg" : "text-xl"
+                  }`}
+                >
                   {site.title}
                 </span>
-                <span className={`text-white/80 tracking-wider uppercase leading-none mt-1 transition-all duration-300 ${
-                  isScrolled ? "text-[0px] opacity-0 h-0" : "text-[10px] opacity-100 h-auto"
-                }`}>
+                <span
+                  className={`text-white/70 uppercase tracking-widest transition-all ${
+                    isScrolled ? "opacity-0 h-0" : "opacity-100 text-[10px]"
+                  }`}
+                >
                   Intellectual wisdom in technology
                 </span>
               </div>
             </Link>
 
+            {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-8">
-              {site.nav?.map((n) => (
+              {site.nav.map((n) => (
                 <Link
                   key={n.href}
                   href={n.href.startsWith("#") ? `/${n.href}` : n.href}
-                  onClick={(e) => handleNavigation(e, n.href)}
-                  className="text-base font-medium text-white/90 hover:text-[#007aff] transition-all duration-300 relative group"
+                  onClick={(e) => handleNavClick(e, n.href)}
+                  className="text-white/90 hover:text-[#007aff] relative group transition-colors"
                 >
                   {n.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#007aff] to-[#00f0ff] transition-all duration-300 group-hover:w-full rounded-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-[#007aff] to-[#00f0ff] transition-all group-hover:w-full" />
                 </Link>
               ))}
             </nav>
 
+            {/* MOBILE TOGGLE */}
             <button
-              aria-label="Toggle menu"
-              onClick={() => setOpen((s) => !s)}
-              className="lg:hidden p-2 text-white hover:text-[#007aff] transition-colors duration-300"
+              className="lg:hidden text-2xl text-white"
+              onClick={() => setOpen((v) => !v)}
             >
-              <span className="text-2xl">{open ? "✕" : "☰"}</span>
+              {open ? "✕" : "☰"}
             </button>
           </div>
 
+          {/* MOBILE MENU */}
           {open && (
-            <div className="absolute left-0 right-0 top-full bg-[#030C20]/95 backdrop-blur-xl border-b border-white/10 lg:hidden shadow-2xl animate-slide-down">
-              <div className="flex flex-col p-6 gap-4">
-                {site.nav?.map((n) => (
+            <div className="lg:hidden bg-[#030C20]/95 backdrop-blur-xl border-t border-white/10">
+              <div className="flex flex-col gap-4 p-6">
+                {site.nav.map((n) => (
                   <Link
                     key={n.href}
                     href={n.href.startsWith("#") ? `/${n.href}` : n.href}
-                    onClick={(e) => handleNavigation(e, n.href)}
-                    className="text-lg font-medium text-white/90 hover:text-[#007aff] transition-all duration-300 hover:translate-x-2"
+                    onClick={(e) => handleNavClick(e, n.href)}
+                    className="text-lg text-white/90 hover:text-[#007aff] transition-all hover:translate-x-2"
                   >
                     {n.label}
                   </Link>
