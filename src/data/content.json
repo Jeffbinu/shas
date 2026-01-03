@@ -2,7 +2,7 @@
   "site": {
     "title": "SHASHONK",
     "nav": [
-      { "label": "Home", "href": "#home" },
+      { "label": "Home", "href": "/#" },
       { "label": "About Us", "href": "#about-us" },
       { "label": "Our Service", "href": "#our-service" },
       { "label": "Our Projects", "href": "#our-projects" },
