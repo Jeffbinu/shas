@@ -54,7 +54,7 @@ export default function ServicesGrid({ items }: ServicesGridProps) {
               Our Services
             </span>
           </div>
-          <h2 className="text-4xl sm:text-4xl lg:text-4xl font-syne font-bold text-white">
+          <h2 className="text-3xl  sm:text-4xl lg:text-4xl font-syne font-bold text-white">
             What We Do
           </h2>
         </div>

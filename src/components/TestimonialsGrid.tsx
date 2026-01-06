@@ -32,7 +32,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative sm:pt-12 overflow-hidden">
+    <section ref={sectionRef} className="relative pt-12  overflow-hidden">
       <div className="relative mx-auto px-4 sm:px-8 lg:px-16">
         {/* HEADER */}
         <div
@@ -52,7 +52,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Our Happy Clients
           </h2>
         </div>

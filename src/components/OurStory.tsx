@@ -51,7 +51,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
             </span>
           </div>
 
-          <h2 className="text-4xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold ">
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold ">
             Our Story
           </h2>
         </div>

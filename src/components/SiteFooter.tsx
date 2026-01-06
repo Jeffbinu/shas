@@ -99,7 +99,7 @@ export default function SiteFooter({
         <div className="flex flex-col gap-10">
           {/* LOGO */}
           <div className="flex ">
-            <div className="relative h-28 w-[20%]">
+            <div className="relative h-28 w-[60%] sm:w-[20%]">
               <Image
                 src="/header/logo.svg"
                 alt={`${site.title} logo`}

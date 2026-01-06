@@ -25,7 +25,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-20 sm:py-12 overflow-hidden"
+      className="relative w-full pt-12 sm:py-12 overflow-hidden"
     >
       <div
         className={`
@@ -54,7 +54,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
             {sliderLogos.map((src, index) => (
               <div
                 key={index}
-                className="mx-8 sm:mx-12 flex items-center justify-center   "
+                className="mx-4 sm:mx-12 flex items-center justify-center   "
               >
                 <Image
                   src={src}

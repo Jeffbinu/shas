@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -23,8 +24,18 @@ export default function Header({
   const router = useRouter();
 
   /* -------------------------------
-     ROUTE CHANGE SAFETY RESET
+     1. ROUTE CHANGE SAFETY (FIXED)
+     Pattern: Adjust state during rendering
   -------------------------------- */
+  // We track the previous path to detect changes during render
+  const [prevPath, setPrevPath] = useState(pathname);
+
+  if (pathname !== prevPath) {
+    setPrevPath(pathname);
+    setOpen(false); // Close menu immediately without an Effect
+  }
+
+  // Keep scroll restoration logic in Effect (since it uses window)
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (window.scrollY < 50) {
@@ -157,11 +168,11 @@ export default function Header({
             <Link
               href="/#"
               onClick={(e) => handleNavClick(e, "/#")}
-              className="flex items-center group select-none"
+              className="flex items-center group select-none relative z-[70]"
             >
               <div
                 className={`relative transition-all duration-300 w-auto pe-4 ${
-                  isScrolled ? "h-10" : "h-16 sm:h-17"
+                  isScrolled ? "h-10" : "h-10 sm:h-17"
                 }`}
               >
                 <Image
@@ -188,34 +199,78 @@ export default function Header({
               ))}
             </nav>
 
-            {/* MOBILE TOGGLE */}
+            {/* MOBILE TOGGLE (Animated Hamburger) */}
             <button
-              className="lg:hidden text-2xl text-white"
+              className="lg:hidden relative w-8 h-8 flex flex-col justify-center items-center z-[70] group"
               onClick={() => setOpen((v) => !v)}
+              aria-label="Toggle Menu"
             >
-              {open ? "✕" : "☰"}
+              <span
+                className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ease-out ${
+                  open ? "rotate-45 translate-y-0.5" : "-translate-y-1"
+                }`}
+              />
+              <span
+                className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ease-out ${
+                  open ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`w-6 h-0.5 bg-white rounded-full transition-all duration-300 ease-out ${
+                  open ? "-rotate-45 -translate-y-1.5" : "translate-y-1"
+                }`}
+              />
             </button>
           </div>
-
-          {/* MOBILE MENU */}
-          {open && (
-            <div className="lg:hidden bg-[#030C20]/95 backdrop-blur-xl border-t border-white/10">
-              <div className="flex flex-col gap-4 p-6">
-                {site.nav.map((n) => (
-                  <Link
-                    key={n.href}
-                    href={n.href.startsWith("#") ? `/${n.href}` : n.href}
-                    onClick={(e) => handleNavClick(e, n.href)}
-                    className="text-lg text-white/90 hover:text-[#007aff] transition-all hover:translate-x-2"
-                  >
-                    {n.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </header>
+
+      {/* MOBILE MENU OVERLAY & DRAWER */}
+      <div
+        className={`fixed inset-0 z-[60] lg:hidden transition-all duration-500 ${
+          open ? "pointer-events-auto" : "pointer-events-none delay-200"
+        }`}
+      >
+        {/* Backdrop (Fade in/out) */}
+        <div
+          className={`absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-500 ${
+            open ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setOpen(false)}
+        />
+
+        {/* Drawer (Slide from right) */}
+        <div
+          className={`absolute right-0 top-0 h-full w-[80%] max-w-[300px] bg-[#030C20]/95 backdrop-blur-2xl border-l border-white/10 shadow-2xl transition-transform duration-500 cubic-bezier(0.32, 0.72, 0, 1) ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex flex-col h-full pt-32 px-8 pb-8">
+            <nav className="flex flex-col gap-6">
+              {site.nav.map((n, idx) => (
+                <Link
+                  key={n.href}
+                  href={n.href.startsWith("#") ? `/${n.href}` : n.href}
+                  onClick={(e) => handleNavClick(e, n.href)}
+                  className={`text-xl font-medium text-white/90 hover:text-[#007aff] transition-all duration-300 transform ${
+                    open
+                      ? "translate-x-0 opacity-100"
+                      : "translate-x-10 opacity-0"
+                  }`}
+                  style={{ transitionDelay: `${100 + idx * 50}ms` }}
+                >
+                  {n.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="mt-auto">
+               <div className="w-full h-[1px] bg-white/10 mb-6"></div>
+               <p className="text-gray-400 text-sm">© {site.title}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

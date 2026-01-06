@@ -134,10 +134,10 @@ export default function Hero({
               {description}
             </p>
 
-            <div className="flex justify-center lg:justify-start mb-10 lg:w-[60%] mx-auto lg:mx-0">
+            <div className="flex justify-center lg:justify-start mb-10 lg:w-[60%] mx-auto lg:mx-0 text-sm sm:text-xl">
               <a
                 href={ctaPrimary?.href || "#services"}
-                className="px-8 py-4 bg-[#007aff] hover:bg-[#0062cc] text-white font-semibold rounded-full shadow-[0_10px_30px_rgba(0,122,255,0.4)] transition-all hover:-translate-y-1"
+                className="sm:px-8 sm:py-4 px-4 py-2 bg-[#007aff] hover:bg-[#0062cc] text-white font-semibold rounded-full shadow-[0_10px_30px_rgba(0,122,255,0.4)] transition-all hover:-translate-y-1"
               >
                 {ctaPrimary?.label || "Explore Our Services"}
               </a>

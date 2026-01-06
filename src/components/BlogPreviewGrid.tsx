@@ -21,7 +21,7 @@ export default function BlogPreviewGrid() {
   return (
     <section
       ref={sectionRef}
-      className="relative sm:py-12 overflow-hidden"
+      className="relative pt-12 sm:py-12 overflow-hidden"
     >
       <div className="relative mx-auto px-4 sm:px-8 lg:px-16">
         {/* HEADER */}
@@ -42,7 +42,7 @@ export default function BlogPreviewGrid() {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne uppercase">
+          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne uppercase">
             Blog
           </h2>
         </div>

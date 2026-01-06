@@ -27,7 +27,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative sm:py-12 overflow-hidden">
+    <section ref={sectionRef} className="relative py-12 overflow-hidden">
       <style>{`
         @keyframes pulse-slow {
           0%, 100% { transform: scale(1); opacity: 0.9; }
@@ -60,7 +60,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
             </span>
           </div>
 
-          <h2 className="relative z-10 text-4xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold">
+          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl  text-white font-syne font-bold">
             How We Work
           </h2>
         </div>
@@ -75,7 +75,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
             `}
           >
             <div
-              className="relative w-[90vw] sm:w-[520px] lg:w-[600px] h-[75vh] sm:h-[70vh] lg:h-[90vh] rounded-[3rem] border border-white/10 shadow-2xl "
+              className="relative w-[90vw] sm:w-[520px] lg:w-[600px] h-[55vh] sm:h-[70vh] lg:h-[90vh] rounded-[3rem] border border-white/10 shadow-2xl "
               style={{
                 background:
                   "linear-gradient(180deg, rgba(40,46,108,0.2) 0%, rgba(189,213,244,0.05) 100%)",
@@ -83,7 +83,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
               }}
             >
               {/* ORB */}
-              <div className="absolute -top-[-5%] -left-[20%] w-[90%] aspect-square rounded-full overflow-hidden animate-pulse-slow border border-white/5">
+              <div className="absolute top-[10%] left-[-15%] sm:-top-[-5%] sm:-left-[20%] w-[90%] aspect-square rounded-full overflow-hidden animate-pulse-slow border border-white/5">
                 <div className="absolute inset-0 bg-[#020617]" />
                 <div className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] bg-[#007aff] rounded-full mix-blend-screen blur-[60px] opacity-80" />
                 <div className="absolute bottom-[-10%] right-[-10%] w-[70%] h-[70%] bg-[#D93068] rounded-full mix-blend-screen blur-[60px] opacity-60" />
@@ -95,7 +95,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
                 />
 
                 <div className="relative h-full w-full flex flex-col justify-center px-8 pl-[30%]">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-6 leading-tight font-poppins">
+                  <h3 className="text-xl sm:text-3xl lg:text-4xl font-semibold text-white mb-6 leading-tight font-poppins">
                     SIMPLE,
                     <br />
                     TRANSPARENT,

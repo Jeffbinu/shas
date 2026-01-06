@@ -128,7 +128,7 @@ export default function ContactSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden pt-12 sm:pt-0"
     >
       {/* <ChatBot /> */}
 
@@ -144,7 +144,7 @@ export default function ContactSection() {
               Contact us
             </span>
           </div>
-          <h2 className="text-4xl md:text-3xl lg:text-4xl font-bold text-white font-syne mb-4">
+          <h2 className="text-3xl  md:text-3xl lg:text-4xl font-bold text-white font-syne mb-4">
             Reach Out &{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
               Innovate
