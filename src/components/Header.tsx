@@ -116,7 +116,7 @@ export default function Header({
     const start = window.scrollY;
     const target = el.getBoundingClientRect().top + start;
     const distance = target - start;
-    const duration = 800;
+    const duration = 50;
     let startTime: number | null = null;
 
     const easeOutExpo = (t: number) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
@@ -245,7 +245,30 @@ export default function Header({
             open ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="flex flex-col h-full pt-32 px-8 pb-8">
+          <div className="flex flex-col h-full pt-8 px-8 pb-8">
+            {/* Logo at the top of mobile drawer */}
+            <div
+              className={`flex justify-start mb-8 pb-6 border-b border-white/10 transition-all duration-300 ${
+                open ? "translate-y-0 opacity-100" : "-translate-y-4 opacity-0"
+              }`}
+              style={{ transitionDelay: "50ms" }}
+            >
+              <Link
+                href="/#"
+                onClick={(e) => handleNavClick(e, "/#")}
+                className="flex items-center group select-none"
+              >
+                <div className="relative h-12 w-auto">
+                  <Image
+                    src={logo}
+                    alt={`${site.title} logo`}
+                    className="w-auto h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                    priority
+                  />
+                </div>
+              </Link>
+            </div>
+
             <nav className="flex flex-col gap-6">
               {site.nav.map((n, idx) => (
                 <Link
@@ -257,7 +280,7 @@ export default function Header({
                       ? "translate-x-0 opacity-100"
                       : "translate-x-10 opacity-0"
                   }`}
-                  style={{ transitionDelay: `${100 + idx * 50}ms` }}
+                  style={{ transitionDelay: `${150 + idx * 50}ms` }}
                 >
                   {n.label}
                 </Link>
@@ -265,8 +288,8 @@ export default function Header({
             </nav>
 
             <div className="mt-auto">
-               <div className="w-full h-[1px] bg-white/10 mb-6"></div>
-               <p className="text-gray-400 text-sm">© {site.title}</p>
+              <div className="w-full h-[1px] bg-white/10 mb-6"></div>
+              <p className="text-gray-400 text-sm">© {site.title}</p>
             </div>
           </div>
         </div>

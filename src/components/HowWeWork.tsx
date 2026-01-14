@@ -54,13 +54,7 @@ export default function HowWeWork({ data }: HowWeWorkProps) {
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
 
-          <div className="relative z-10 inline-flex items-center mb-6 bg-white rounded-full">
-            <span className="px-4 py-1.5  text-[#0a1525] text-sm font-medium font-poppins">
-              Our process
-            </span>
-          </div>
-
-          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl  text-white font-syne font-bold">
+          <h2 className="relative z-10 text-3xl sm:py-16 sm:text-4xl lg:text-4xl  text-white font-syne font-bold">
             How We Work
           </h2>
         </div>

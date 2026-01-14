@@ -132,19 +132,15 @@ export default function ContactSection() {
     >
       {/* <ChatBot /> */}
 
-      <div className="container mx-auto px-6 lg:px-8">
+      <div className=" mx-auto px-6 lg:px-8">
         {/* Header */}
         <div
           className={`text-center mb-16 transition-all duration-700 ease-out ${
             inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <div className="inline-block px-4 py-1.5 mb-6 bg-white border backdrop-blur-sm rounded-full">
-            <span className="text-[#0B1221] bg-clip-text text-xs font-bold uppercase tracking-wider">
-              Contact us
-            </span>
-          </div>
-          <h2 className="text-3xl  md:text-3xl lg:text-4xl font-bold text-white font-syne mb-4">
+
+          <h2 className="text-3xl  md:text-3xl lg:text-4xl font-bold text-white font-syne sm:py-16">
             Reach Out &{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
               Innovate

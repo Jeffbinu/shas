@@ -25,7 +25,7 @@ export default function PartnersLogos({ logos }: { logos: StaticImageData[] }) {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full pt-12 sm:py-12 overflow-hidden"
+      className="relative w-full sm:pt-12 sm:py-12 overflow-hidden"
     >
       <div
         className={`

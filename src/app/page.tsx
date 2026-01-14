@@ -164,7 +164,7 @@ export default function HomePage() {
         </div>
 
         {/* Our clients / partners */}
-        <section id="our-clients" className="relative z-10 ">
+        <section  className="relative z-10 ">
           <PartnersLogos logos={logos} />
         </section>
 
@@ -195,7 +195,7 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="">
+      <section id="our-clients" className="">
         <TestimonialsGrid items={testimonials} />
       </section>
 

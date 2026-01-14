@@ -48,13 +48,7 @@ export default function ProjectsGrid({ items }: ProjectsGridProps) {
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
 
-          <div className="inline-block px-5 py-2 mb-5 rounded-full bg-white  backdrop-blur-sm relative z-10">
-            <span className="text-[#0a1525] text-sm font-semibold tracking-wide">
-              Our portfolio
-            </span>
-          </div>
-
-          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-3xl sm:py-16  sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Completed Projects
           </h2>
         </div>
