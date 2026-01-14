@@ -45,7 +45,7 @@ export default function OurStory({ videoSrc }: OurStoryProps) {
       >
         {/* Header */}
         <div className="text-center mb-20">
-          <h2 className="text-3xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold sm:py-16 ">
+          <h2 className="text-3xl sm:text-4xl lg:text-4xl  text-white font-syne font-bold sm:py-12 ">
             Our Story
           </h2>
         </div>

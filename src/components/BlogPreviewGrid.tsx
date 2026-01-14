@@ -35,7 +35,7 @@ export default function BlogPreviewGrid() {
             <div className="w-[30%] h-full bg-[#044d9b] rounded-full mix-blend-screen blur-[120px] opacity-40" />
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
-          <h2 className="relative z-10 text-3xl sm:py-16 sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne uppercase">
+          <h2 className="relative z-10 text-3xl sm:py-12 sm:text-4xl lg:text-4xl font-bold text-white tracking-widest font-syne uppercase">
             Insights
           </h2>
         </div>

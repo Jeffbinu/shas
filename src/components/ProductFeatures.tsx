@@ -37,7 +37,7 @@ export default function ProductFeatures() {
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
 
-          <h2 className="relative z-10 text-3xl sm:py-16  sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-3xl sm:py-12  sm:text-4xl lg:text-4xl font-bold text-white tracking-tight font-syne">
             Product Features
           </h2>
         </div>

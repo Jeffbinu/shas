@@ -46,7 +46,7 @@ export default function TestimonialsGrid({ items }: TestimonialsGridProps) {
             <div className="w-[30%] h-full bg-[#D93068] rounded-full mix-blend-screen blur-[120px] opacity-40" />
           </div>
 
-          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl sm:py-16  font-bold text-white tracking-tight font-syne">
+          <h2 className="relative z-10 text-3xl  sm:text-4xl lg:text-4xl sm:py-12  font-bold text-white tracking-tight font-syne">
             Our Happy Clients
           </h2>
         </div>

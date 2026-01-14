@@ -140,7 +140,7 @@ export default function ContactSection() {
           }`}
         >
 
-          <h2 className="text-3xl  md:text-3xl lg:text-4xl font-bold text-white font-syne sm:py-16">
+          <h2 className="text-3xl  md:text-3xl lg:text-4xl font-bold text-white font-syne sm:py-12">
             Reach Out &{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
               Innovate
