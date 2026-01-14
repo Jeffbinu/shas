@@ -159,7 +159,7 @@ export default function Hero({
 
           {/* WOMAN IMAGE — STABLE & SCREEN-INDEPENDENT */}
           <div
-            className="hidden absolute right-[-4%] top-1/2 xl:top-[20rem] -translate-y-1/2 pointer-events-none"
+            className="hidden sm:block absolute right-[-4%] top-1/2 xl:top-[20rem] -translate-y-1/2 pointer-events-none"
             style={{
               width: "clamp(22rem, 42vw, 65rem)",
             }}
