@@ -84,7 +84,7 @@ export default function BlogPreviewGrid() {
                         strokeWidth="3"
                         strokeLinecap="round"
                         strokeLinejoin="round"
-                        className="text-white transform group-hover:rotate-45 transition-transform"
+                        className="text-white transform rotate-45 group-hover:rotate-0 transition-transform"
                       >
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>

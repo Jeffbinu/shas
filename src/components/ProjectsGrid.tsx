@@ -94,7 +94,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
 
         {/* Arrow */}
         <div className="absolute top-6 right-6 z-20">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#111827]/80 backdrop-blur-md text-white shadow-lg transition-all duration-500 group-hover:bg-[#111827] group-hover:rotate-45">
+          <div className="flex items-center justify-center w-10 h-10 rounded-full bg-[#111827]/80 backdrop-blur-md text-white shadow-lg transition-all duration-500 group-hover:bg-[#111827] rotate-45 group-hover:rotate-0">
             <svg
               width="14"
               height="14"

@@ -13,8 +13,8 @@ import youtubeIcon from "../../public/footer/youtube.png";
 const PhoneIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
+    width="25"
+    height="25"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
@@ -27,8 +27,8 @@ const PhoneIcon = () => (
 const MailIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="20"
-    height="20"
+    width="25"
+    height="25"
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
